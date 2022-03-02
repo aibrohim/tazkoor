@@ -1,0 +1,33 @@
+.card-game-header {
+  padding: 20px 0;
+  margin-bottom: 24px;
+}
+
+.card-game-header__container {
+  position: relative;
+}
+
+.card-game-header__back {
+  background-color: #fff;
+  border: none;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+
+.card-game-header__back-icon {
+  display: block;
+}
+
+.card-game-header__title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #333333;
+}

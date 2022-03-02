@@ -1,0 +1,33 @@
+@import "styles/mixins.scss";
+
+.auth-ways {
+  margin-top: 10px;
+  display: flex;
+}
+
+.auth-ways__item {
+  @include reset-btn;
+  text-align: center;
+  background: #F5F5F5;
+  border-radius: 14px;
+  padding: 19px;
+  flex-grow: 1;
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 19px;
+  color: #333333;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.auth-ways__item-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-ways__item-logo {
+  margin-right: 10px;
+}

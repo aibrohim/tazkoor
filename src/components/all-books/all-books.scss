@@ -1,0 +1,11 @@
+.all-books {
+  margin-top: 24px;
+}
+
+.all-books__book {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

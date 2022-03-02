@@ -1,0 +1,15 @@
+.words {
+  margin-bottom: 10px;
+}
+
+.words__header {
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.words__list {
+  display: flex;
+  flex-wrap: wrap;
+}

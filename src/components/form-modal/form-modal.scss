@@ -1,0 +1,132 @@
+@keyframes form-modal-open {
+  from {
+    backdrop-filter: blur(0);
+    background: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes form-modal-closing {
+  from {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  to {
+    backdrop-filter: blur(0);
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes form-modal-content-open {
+  from {
+    transform: translateY(100%);
+  }
+  
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes form-modal-content-closing {
+  from {
+    transform: translateY(0);
+  }
+  
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 9;
+  flex-direction: column;
+  display: none;
+}
+
+.form-modal--opened {
+  display: flex;
+  animation: form-modal-open .3s linear;
+}
+
+.form-modal--closing {
+  animation: form-modal-closing .15s linear;
+}
+
+.form-modal__content {
+  margin-top: auto;
+  background-color: #fff;
+  border-radius: 24px 24px 0px 0px;
+}
+
+.form-modal--opened .form-modal__content {
+  animation: 0.15s linear form-modal-content-open;
+}
+
+.form-modal--closing .form-modal__content {
+  animation: 0.15s linear form-modal-content-closing;
+}
+
+.form-modal__container {
+  padding: 0 24px;
+  padding-bottom: 38px;
+  position: relative;
+}
+
+.form-modal__title {
+  margin: 0;
+  margin-top: 32px;
+  margin-bottom: 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.form-modal__description {
+  margin: 0;
+  margin-bottom: 38px;
+  width: 220px;
+}
+
+.form-modal__close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 24px;
+
+  &::before,
+  &::after {
+    width: 16px;
+    height: 1px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: '';
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}

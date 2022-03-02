@@ -1,0 +1,36 @@
+.switch {
+  background-color: #F4F4F4;
+  border-radius: 100px;
+  padding: 4px;
+  position: relative;
+  display: flex;
+}
+
+.switch__label {  
+  padding: 8px 12px;
+  display: block;
+  font-size: 14px;
+  line-height: 17px;
+  color: #81755C;
+  position: relative;
+  z-index: 2;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.switch__radio:checked ~ .switch__label-txt {
+  color: #000;
+}
+
+.switch__bar {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 72px;
+  height: 33px;
+  background-color: #fff;
+  border-radius: 100px;
+  transition: 0.2s ease all;
+}

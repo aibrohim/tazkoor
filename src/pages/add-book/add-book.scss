@@ -1,0 +1,20 @@
+.add-book {
+  height: 100%;
+  overflow: auto;
+  padding-top: 24px;
+  padding-bottom: 14px;
+}
+
+.add-book__title {
+  margin-bottom: 8px;
+}
+
+.add-book__description {
+  width: 220px;
+}
+
+.add-book__submit {
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 14px;
+}

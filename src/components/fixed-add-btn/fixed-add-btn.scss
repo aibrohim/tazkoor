@@ -1,0 +1,28 @@
+.fixed-add-btn {
+  position: fixed;
+  bottom: 114px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50px;
+  padding-left: 75px;
+  padding-right: 52px;
+  display: block;
+  white-space: nowrap;
+
+  &::after,
+  &::before {
+    width: 13px;
+    height: 1.5px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 53px;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    content: '';
+  }
+
+  &::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+}

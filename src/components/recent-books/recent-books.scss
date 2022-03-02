@@ -1,0 +1,20 @@
+.recent-books {
+  margin-top: 24px;
+}
+
+.recent-books__books {
+  margin: 0 -20px 0;
+  padding: 0 20px;
+  overflow-x: auto;
+  display: flex;
+}
+
+.recent-books__book {
+  width: 325px;
+  margin-right: 10px;
+  flex-shrink: 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

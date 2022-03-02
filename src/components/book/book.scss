@@ -1,0 +1,62 @@
+.book {
+  width: 100%;
+  background-color: #F4F4F4;
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
+}
+
+.book__link {
+  color: inherit;
+  display: block;
+}
+
+.book__title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.book__languages {
+  margin: 0;
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #333333;
+}
+
+.book__language {
+  font-weight: inherit;
+}
+
+.book__footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.book__data {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #81755C;
+
+  &:first-child:last-child {
+    margin: 0 auto;
+  }
+}
+
+.book__share {
+  display: block;
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+
+.book__share-icon {
+  display: block;
+}

@@ -1,0 +1,92 @@
+@import "styles/mixins.scss";
+
+@keyframes identifier {
+  0% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.splash {
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #ccc;
+}
+
+.splash__img {
+  flex-grow: 1;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.splash__img--animated {
+  animation: identifier 0.1s linear;
+}
+
+.splash__slider {
+  flex-shrink: 0;
+  background-color: #fff;
+  padding-bottom: 40px;
+}
+
+.splash__item-content {
+  padding: 24px 13px 49px;
+  text-align: center;
+}
+
+.splash__item-title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.splash__item-description {
+  padding: 0 19px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+
+.splash__btn {
+  display: block;
+  width: 100%;
+}
+
+.splash__indicators {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+}
+
+.splash__indicator {
+  display: block;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  background-color: rgba(#333333, 0.2);
+  border-radius: 10px;
+  margin-right: 6px;
+
+  transition: 0.3s ease all;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.splash__indicator--active {
+  background-color: #333;
+  width: 16px;
+}

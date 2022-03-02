@@ -1,0 +1,42 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.nav {
+  padding-bottom: 34px;
+  background-color: #F9F9F9;
+}
+
+.nav__list {
+  @include reset-list;
+  display: flex;
+}
+
+.nav__item {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 500;
+  color: #A2A2A6;
+
+  &.active {
+    color: $accent-color;
+  }
+}
+
+.nav__link--active {
+  color: $accent-color;
+}
+
+.nav__link svg {
+  width: 25px;
+  height: 25px;
+  margin-bottom: 2px;
+}

@@ -1,0 +1,31 @@
+.email-verify-reset__inputs {
+  width: 100% !important;
+}
+
+.email-verify-reset__inputs input {
+  flex-grow: 1;
+  margin-right: 15px;
+  border: 1px solid #EEEEEE;
+  border-radius: 10px;
+  height: 60px;
+  font-family: inherit;
+  color: inherit;
+
+  &:last-child {
+    margin-right: 0;
+    border-color: #EEEEEE;
+  }
+
+  &:first-child,
+  &:last-child {
+    border-radius: 10px;
+  }
+
+  &:focus {
+    border-color: #AEAEAE;
+  }
+}
+
+.email-verify-reset__inputs > div {
+  display: flex;
+}

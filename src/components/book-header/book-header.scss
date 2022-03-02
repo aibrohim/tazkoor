@@ -1,0 +1,32 @@
+.book-header__container {
+  display: flex;
+  align-items: center;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.book-header__back-icon {
+  display: block;
+}
+
+.book-header__title {
+  flex-grow: 1;
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #333333;
+}
+
+.book-header__popup-toggler {
+  background-color: transparent;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.book-header__popup-toggler-icon {
+  display: block;
+}

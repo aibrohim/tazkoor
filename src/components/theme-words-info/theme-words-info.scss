@@ -1,0 +1,27 @@
+.theme-words-info {
+  display: flex;
+  align-items: baseline;
+}
+
+.theme-words-info__item {
+  margin: 0;
+}
+
+.theme-words-info__item:first-child {
+  margin-right: auto;
+}
+
+.theme-words-info__item:first-child:last-child {
+  margin-left: auto;
+}
+
+.theme-words-info__item {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #81755C;
+}
+
+.theme-words-info__item-title {
+  font-weight: inherit;
+}

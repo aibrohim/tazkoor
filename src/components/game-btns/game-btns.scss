@@ -1,0 +1,15 @@
+.game-btns {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 38px;
+}
+
+.game-btns__item {
+  flex-grow: 1;
+  padding: 18px;
+  border-radius: 14px;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}

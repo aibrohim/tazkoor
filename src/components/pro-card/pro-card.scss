@@ -1,0 +1,36 @@
+.pro-card {
+  background: conic-gradient(from 100.56deg at 50% 50%, #FBBE01 0deg, #FFD759 149.81deg, #FFE595 360deg);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.pro-card__link {
+  display: block;
+  color: inherit;
+}
+
+.pro-card__heading {
+  width: 205px;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;  
+}
+
+.pro-card__description {
+  margin: 10px auto 24px;
+  padding: 0 30px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333; 
+}
+
+.pro-card__price {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+}
