@@ -17,8 +17,6 @@ enum BookPages {
 
 const Book:FC = function() {
   const [ activePage, setActivePage ] = useState<BookPages>(BookPages.Themes);
-  console.log(activePage);
-  
 
   const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
 

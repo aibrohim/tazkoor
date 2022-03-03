@@ -19,7 +19,8 @@ const client = function(
     body: data ? JSON.stringify(data) : null,
     headers: {
       Authorization: token ? token : "",
-      "Content-Type": data ? "Application/json" : ""
+      "Content-Type": data ? "Application/json" : "",
+      ...customHeaders
     },
     ...customConfig,
   };

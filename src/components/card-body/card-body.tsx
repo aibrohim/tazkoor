@@ -10,8 +10,6 @@ const CardBody:FC = function() {
   const [ secondsRemaining, setSecondsRemaining ] = useState<number>(5);
 
   useEffect(() => {
-    console.log(secondsRemaining);
-    
     if (secondsRemaining >= 1) {
       setTimeout(() => setSecondsRemaining(secondsRemaining - 1), 1000);
     } else {

@@ -4,13 +4,56 @@ import AuthSubmit from "components/auth/submit/submit";
 import FixedAddBtn from "components/fixed-add-btn/fixed-add-btn";
 import FormModal from "components/form-modal/form-modal";
 import { Weights } from "consts";
-import { FC, useState } from "react";
+import { useAuth } from "contexts/auth";
+import { FC, FormEvent, useCallback, useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { useParams } from "react-router-dom";
+import { client } from "utils/client";
 
 import "./add-theme.scss";
 
-const AddTheme:FC = function() {
+interface Props {
+  onThemeAdded: Function
+}
 
+const AddTheme:FC<Props> = function({onThemeAdded}) {
+  const { token } = useAuth();
   const [ isAddOpen, setAddOpen ] = useState<boolean>(false);
+
+  const { id } = useParams();
+
+  const [ title, setTitle ] = useState<string>("");
+
+  const { 
+    isLoading,
+    mutate,
+    isSuccess,
+    data
+  } = useMutation(() => client(`themes`, {
+    token,
+    data: {
+      book_id: id,
+      title
+    }
+  }));  
+
+  useEffect(() => {
+    if (isSuccess && data && isAddOpen) {
+      onThemeAdded(data[0]);
+
+      setAddOpen(false);
+    }
+  }, [isSuccess, data, isAddOpen, onThemeAdded]);
+
+  const handleFormSubmit = (evt:FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (title.trim().length) {
+      mutate();
+    }
+  }
+
+  const handleInputChange = (evt:any) => setTitle(evt.target.value);
 
   const handleAddClick = function() {
     setAddOpen(true);
@@ -30,13 +73,13 @@ const AddTheme:FC = function() {
         opened={isAddOpen}
         onClose={handleAddModalClose}
       >
-        <form className="add-theme" method="POST">
+        <form onSubmit={handleFormSubmit} className="add-theme" method="POST">
           <AuthFields className="add-theme__fields">
-            <AuthField label="Mavzu nomi" />
+            <AuthField label="Mavzu nomi" value={title} onChange={handleInputChange} />
           </AuthFields>
 
-          <AuthSubmit weight={Weights.bold} className="add-theme__submit">
-            Mavzu qo'shish
+          <AuthSubmit disabled={isLoading} weight={Weights.bold} className="add-theme__submit">
+            {isLoading ? "Mavzu qo'shilyapti..." : "Mavzu qo'shish"}
           </AuthSubmit>
         </form>
       </FormModal>

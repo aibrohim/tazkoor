@@ -37,6 +37,12 @@ export interface Book {
   words_count: number;
 }
 
+export interface Theme {
+  id: number;
+  title: string;
+  words_count?: string;
+}
+
 export interface Language {
   id: number;
   abbreviation: string;
