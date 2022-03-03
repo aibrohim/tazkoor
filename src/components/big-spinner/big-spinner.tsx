@@ -1,10 +1,15 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 
 import "./big-spinner.scss";
 
-const BigSpinner:FC = function() {
+interface Props {
+  margin?: string;
+  styles?: CSSProperties
+}
+
+const BigSpinner:FC<Props> = function({margin, styles}) {
   return (
-    <div className="big-spinner" />
+    <div style={{margin, ...styles}} className="big-spinner" />
   );
 }
 

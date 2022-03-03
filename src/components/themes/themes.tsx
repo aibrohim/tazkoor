@@ -55,7 +55,7 @@ const Themes:FC = function() {
       <div className="themes__header">
         <Title className="themes__heading">Themes</Title>
       </div>
-      {isLoading && <BigSpinner />}
+      {isLoading && <BigSpinner margin="50px auto" />}
       {
         themes.length
           ? (
@@ -63,7 +63,7 @@ const Themes:FC = function() {
               {themes.map((theme:any) => <ThemeCard key={theme.id} {...theme} />)}
             </div>
           )
-          : <p>No themes to show. Please, add</p>
+          : data && <p>No themes to show. Please, add</p>
       }
 
       <AddTheme onThemeAdded={handleThemeAdded} />
