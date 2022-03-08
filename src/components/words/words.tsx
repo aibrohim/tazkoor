@@ -1,16 +1,64 @@
 import AddWord from "components/add-word/add-word";
+import BigSpinner from "components/big-spinner/big-spinner";
 import EditWord from "components/edit-word/edit-word";
 import Title from "components/title/title";
 import WordCard from "components/word-card/word-card";
-import { FC, useState } from "react";
+import { Word, WordRelationType } from "consts";
+import { useAuth } from "contexts/auth";
+import { FC, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { client } from "utils/client";
 
 import "./words.scss";
 
-const Words:FC = function() {
+interface Props {
+  type: WordRelationType;
+}
+
+const Words:FC<Props> = function({ type }) {
+  const { id } = useParams();
+
+  const { token } = useAuth();
+
+  const { 
+    isLoading,
+    data,
+  } = useQuery({
+    queryKey: type === WordRelationType.Book ? "book_" + id + "_words" : "theme_" + id + "_words",
+    queryFn: () => {
+      return client("words", {
+        method: "GET",
+        token,
+        headers: {
+          [type === WordRelationType.Book ? "book" : "theme"]: id,
+        }
+      })
+    },
+    enabled: true,
+    refetchOnWindowFocus: true,
+    retry: 3
+  });
+
   const [ editingWord, setEditingWord ] = useState<number | null>(null);
+
+  const [ words, setWords ] = useState<Word[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setWords(data.words);
+    }
+  }, [data]);
 
   const handleWordClick = function(evt: any) {
     setEditingWord(+evt.target.dataset.id)
+  }
+
+  const handleWordAdded = (word:Word) => {
+    setWords([
+      word,
+      ...words
+    ]);
   }
 
   return (
@@ -20,15 +68,22 @@ const Words:FC = function() {
       </div>
 
       <div className="words__list">
-        <WordCard onClick={handleWordClick} id={1} nativeLanguage="Apple" translateLanguage="Olma" />
-        <WordCard onClick={handleWordClick} id={2} nativeLanguage="Apple" translateLanguage="Olma" />
-        <WordCard onClick={handleWordClick} id={3} nativeLanguage="Apple" translateLanguage="Olma" />
-        <WordCard onClick={handleWordClick} id={4} nativeLanguage="Apple" translateLanguage="Olma" />
-        <WordCard onClick={handleWordClick} id={5} nativeLanguage="Apple" translateLanguage="Olma" />
-        <WordCard onClick={handleWordClick} id={6} nativeLanguage="Apple" translateLanguage="Olma" />
+        {isLoading && <BigSpinner />}
+
+        {(data && !words.length) && <p>Ko'rsatish uchun so'zlar yo'q</p>}
+        
+        {words.map(word => (
+          <WordCard
+            key={word.id}
+            onClick={handleWordClick}
+            id={word.id}
+            nativeLanguage={word.title}
+            translateLanguage={word.title_translate}
+          />
+        ))}
       </div>
 
-      <AddWord />
+      <AddWord onWordAdded={handleWordAdded} type={type} />
       <EditWord editingId={editingWord} setEditingId={setEditingWord} /> 
     </section>
   );

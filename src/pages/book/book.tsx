@@ -6,6 +6,7 @@ import Nav from "components/nav/nav";
 import Switch from "components/switch/switch";
 import Themes from "components/themes/themes";
 import Words from "components/words/words";
+import { WordRelationType } from "consts";
 import { FC, useState } from "react";
 
 import "./book.scss";
@@ -32,7 +33,7 @@ const Book:FC = function() {
             {
               activePage === BookPages.Themes
                 ? <Themes />
-                : <Words />
+                : <Words type={WordRelationType.Book} />
             }
             <Switch className="book-page__switch" onChange={handleSwitchChange} />
           </div>

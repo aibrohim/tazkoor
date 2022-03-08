@@ -3,7 +3,7 @@ import { FC, MouseEvent } from "react";
 import "./word-card.scss";
 
 interface Props {
-  id: Number;
+  id: number;
   nativeLanguage: string;
   translateLanguage: string;
   onClick?: Function;

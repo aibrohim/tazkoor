@@ -49,3 +49,17 @@ export interface Language {
   icon: string;
   title: string;
 }
+
+export enum WordRelationType {
+  Book,
+  Theme
+}
+
+export interface Word {
+  id: number;
+  book: Number;
+  partsofspeech: Number;
+  theme: Number | null;
+  title: string;
+  title_translate: string;
+}
