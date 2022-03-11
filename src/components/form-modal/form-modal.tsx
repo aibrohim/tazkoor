@@ -1,18 +1,18 @@
 import Container from "components/container/container";
-import { AnimationEvent, FC, ReactChildren, ReactElement, useEffect, useState } from "react";
+import { AnimationEvent, FC, ReactElement, useEffect, useState } from "react";
 
 import "./form-modal.scss";
 
-interface Props {
+export interface ModalProps {
   title: string;
   description?: string;
   onToggle?: Function;
   onClose?: Function;
   opened?: boolean;
-  children: ReactElement
+  children?: ReactElement
 }
 
-const FormModal:FC<Props> = function({
+const FormModal:FC<ModalProps> = function({
   title, 
   description, 
   opened, 

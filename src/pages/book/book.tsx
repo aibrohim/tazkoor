@@ -27,7 +27,7 @@ const Book:FC = function() {
       <main className="book-page">
         <Container>
           <BookInfo />
-          <GameBtns />
+          <GameBtns type={WordRelationType.Book} />
           
           <div className="book-page__pages">
             {

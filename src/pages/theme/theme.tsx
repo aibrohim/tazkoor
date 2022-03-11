@@ -14,7 +14,7 @@ const Theme:FC = function() {
       <main className="theme-page">
         <Container>
           <BookInfo />
-          <GameBtns />
+          <GameBtns type={WordRelationType.Theme} />
 
           <Words type={WordRelationType.Theme} />
         </Container>

@@ -51,8 +51,13 @@ export interface Language {
 }
 
 export enum WordRelationType {
-  Book,
-  Theme
+  Book = "book",
+  Theme = "theme"
+}
+
+export enum GameTypes {
+  Card = "card",
+  Test = "test"
 }
 
 export interface Word {
