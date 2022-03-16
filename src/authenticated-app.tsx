@@ -15,7 +15,7 @@ const AuthenticatedApp:FC = function() {
       <Route path="/library" element={<Books />} />
       <Route path="/book/:id" element={<Book />} />
       <Route path="/theme/:id" element={<Theme />} />
-      <Route path="/card/:id" element={<CardGame />} />
+      <Route path="/game/card/:wordRelation/:id" element={<CardGame />} />
     </Routes>
   )
 };
