@@ -1,0 +1,35 @@
+.confirm-modal__title {
+  width: 200px;
+  margin: 24px auto 8px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #000000;
+}
+
+.confirm-modal__description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #333333;
+
+  margin: 0;
+  margin-bottom: 38px;
+}
+
+.confirm-modal__actions {
+  display: flex;
+}
+
+.confirm-modal__action {
+  flex-grow: 1;
+  font-size: 14px;
+  line-height: 17px;
+  border-radius: 14px;
+
+  &:first-child {
+    margin-right: 11px;
+  }
+}

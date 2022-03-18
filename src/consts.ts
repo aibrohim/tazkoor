@@ -2,7 +2,8 @@ export enum Colors {
   muted = "muted",
   primary = "primary",
   pink = "pink",
-  success = "success"
+  success = "success",
+  red = "red"
 }
 
 export enum ColorValues {
