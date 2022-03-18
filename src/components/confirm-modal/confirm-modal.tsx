@@ -1,7 +1,7 @@
 import Button from "components/button/button";
-import Modal from "components/modal/modal";
+import Modal, { RefMethods } from "components/modal/modal";
 import { Colors, Weights } from "consts";
-import { FC } from "react";
+import { FC, useRef } from "react";
 
 import "./confirm-modal.scss";
 
@@ -9,7 +9,7 @@ interface Props {
   title: string;
   description?: string;
   onCancelClick?: Function;
-  onAcceptClick?: Function;
+  onAcceptClick?: (arg0: (() => Promise<void>) | undefined) => any;
   onShadowClick?: Function;
 }
 
@@ -20,12 +20,16 @@ const ConfirmModal:FC<Props> = function({
   onAcceptClick,
   onShadowClick
 }) {
+  const modalRef = useRef<RefMethods>(null);
+
   const handleCancelClick = function() {
-    if (onCancelClick) onCancelClick();
+    modalRef.current?.close().then(() => {
+      if (onCancelClick) onCancelClick()
+    });
   }
 
   const handleAcceptClick = function() {
-    if (onAcceptClick) onAcceptClick();
+    if (onAcceptClick) onAcceptClick(modalRef.current?.close);
   }
 
   const handleShadowClick = function() {
@@ -33,7 +37,7 @@ const ConfirmModal:FC<Props> = function({
   }
   
   return (
-    <Modal onShadowClick={handleShadowClick} className="confirm-modal">
+    <Modal ref={modalRef} onShadowClick={handleShadowClick} className="confirm-modal">
       <p className="confirm-modal__title">{title}</p>
       <p className="confirm-modal__description">{description}</p>
 

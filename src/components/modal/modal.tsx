@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { AnimationEvent, forwardRef, ReactNode, useImperativeHandle, useState } from "react";
 
 import "./modal.scss";
 
@@ -8,16 +8,41 @@ interface Props {
   children: ReactNode
 }
 
-const Modal:FC<Props> = function({children, onShadowClick}) {
-  const handleShadowClick = () => {if (onShadowClick) onShadowClick()};
+export interface RefMethods {
+  close: () => Promise<void>;
+}
+
+const Modal = forwardRef<RefMethods, Props>(({children, onShadowClick}, ref) => {
+  const [ isOpen, setOpen ] = useState<boolean>(true);
+
+  const handleShadowClick = () => {
+    setOpen(false);
+  };
+  
+  const handleAnimationEnd = (evt: AnimationEvent<HTMLDivElement>) => {
+    if (evt.animationName === "modal-content-close" && onShadowClick) {
+      onShadowClick();
+    }
+  }
+
+  useImperativeHandle(ref, () => ({
+    close: () => {
+      return new Promise((resolve:any) => {
+        setOpen(false);
+        setTimeout(() => {
+          resolve();
+        }, 150);
+      });
+    }
+  }));
 
   return (
-    <div onClick={handleShadowClick} className="modal">
+    <div onAnimationEnd={handleAnimationEnd} onClick={handleShadowClick} className={"modal " + (!isOpen ? "modal--closed" : "")}>
       <div className="modal__content">
         {children}
       </div>
     </div>
   );
-}
+});
 
 export default Modal;

@@ -1,3 +1,53 @@
+@keyframes modal-open {
+  0% {
+    backdrop-filter: blur(0);
+  }
+
+  100% {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes modal-close {
+  0% {
+    backdrop-filter: blur(8px);
+  }
+  
+  100% {
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes modal-content-open {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-content-close {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -7,17 +57,27 @@
   z-index: 99;
 
   background: rgba(0, 0, 0, 0.5);
+  animation: modal-open linear 0.15s;
   backdrop-filter: blur(8px);
-
+  
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
 }
 
+.modal--closed {
+  animation: modal-close linear 0.15s;
+}
+
 .modal__content {
+  animation: modal-content-open linear 0.15s;
   width: 100%;
   background-color: #fff;
   border-radius: 24px;
   padding: 24px;
+}
+
+.modal--closed .modal__content {
+  animation: modal-content-close linear 0.15s;
 }
