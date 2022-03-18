@@ -1,0 +1,14 @@
+@keyframes skeleton-loading {
+  0% {
+    background-color: #F4F4F4;
+  }
+
+  100% {
+    background-color: #E0E0E0;
+  }
+}
+
+.skeleton {
+  opacity: .7;
+  animation: skeleton-loading 1s linear infinite alternate;
+}

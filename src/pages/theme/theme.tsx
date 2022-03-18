@@ -13,7 +13,7 @@ const Theme:FC = function() {
       <ThemeHeader />
       <main className="theme-page">
         <Container>
-          <BookInfo />
+          {/* <BookInfo /> */}
           <GameBtns type={WordRelationType.Theme} />
 
           <Words type={WordRelationType.Theme} />

@@ -34,8 +34,8 @@ export interface Book {
     id: number;
     name: string;
   };
-  themes_count: number;
-  words_count: number;
+  themes_count: number | string;
+  words_count: number | string;
 }
 
 export interface Theme {
