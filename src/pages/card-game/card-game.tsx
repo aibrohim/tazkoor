@@ -1,11 +1,12 @@
 import BigSpinner from "components/big-spinner/big-spinner";
 import CardBody from "components/card-body/card-body";
 import CardGameHeader from "components/card-game-header/card-game-header";
-import { GameTypes, Word } from "consts";
+import { GameTypes, Word, WordResult } from "consts";
 import { useAuth } from "contexts/auth";
+import { useGameResults } from "contexts/result";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { client } from "utils/client";
 
 interface Answer {
@@ -28,6 +29,8 @@ const CardGame = function() {
 
   const { wordRelation, id } = useParams();
 
+  const { setResults } = useGameResults();
+
   const { 
     isLoading,
     data,
@@ -48,7 +51,7 @@ const CardGame = function() {
   });
 
   const [ activeWord, setActiveWord ] = useState<Word>();
-  const [ answers, setAnswers ] = useState<Answer[]>([]);
+  const [ answers, setAnswers ] = useState<WordResult[]>([]);
   const [ words, setWords ] = useState<Word[]>([]);
 
   useEffect(() => {
@@ -71,13 +74,26 @@ const CardGame = function() {
       setAnswers([
         ...answers.slice(0, currentCardIndex),
         {
-          id: currentCard.id,
-          answer: isTrue
+          ...currentCard,
+          isTrue,
+          seconds: 12
         },
         ...answers.slice(currentCardIndex + 1)
       ]);
+
+      if (currentCardIndex === words.length - 1) {
+        setResults([
+          ...answers,
+          {
+            ...currentCard,
+            isTrue,
+            seconds: 12
+          },
+        ]);
+      } else {
+        setActiveWord(words[currentCardIndex + 1]);
+      }
   
-      setActiveWord(words[currentCardIndex + 1]);
     }
   }
 

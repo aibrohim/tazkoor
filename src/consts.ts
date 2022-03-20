@@ -69,3 +69,8 @@ export interface Word {
   title: string;
   title_translate: string;
 }
+
+export interface WordResult extends Word {
+  seconds: number;
+  isTrue: boolean;
+}
