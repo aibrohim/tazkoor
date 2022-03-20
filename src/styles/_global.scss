@@ -16,6 +16,11 @@ body {
   line-height: 1.5;
   color: #292D34;
   background-color: #fff;
+  -moz-user-select: none; 
+  -webkit-user-select: none; 
+  -ms-user-select:none; 
+  user-select:none;
+  -o-user-select:none;
 }
 
 img {
@@ -37,4 +42,24 @@ a {
 main {
   overflow: auto;
   flex-grow: 1;
+}
+
+@media screen and (min-width: 500px) and (min-height: 915px) {
+  body {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  #root {
+    width: 500px;
+    max-height: 912px;
+    padding: 15px 0;
+    border-radius: 15px;
+    overflow: auto;
+    margin: auto auto;
+    background-color: #fff;
+    transform: translate(0);
+  }
 }

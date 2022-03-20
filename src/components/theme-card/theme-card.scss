@@ -1,7 +1,6 @@
 .theme-card {
   background-color: #F4F4F4;
   border-radius: 14px;
-  padding: 24px;
   margin-bottom: 10px;
 
   &:last-child {
@@ -11,6 +10,8 @@
 
 .theme-card__link {
   color: inherit;
+  padding: 24px;
+  display: block;
 }
 
 .theme-card__title {

@@ -25,6 +25,10 @@
   }
 }
 
+.button[data-readonly="true"] {
+  cursor: unset;
+}
+
 .button--primary {
   background-color: $yellow;
 }

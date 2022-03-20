@@ -31,10 +31,10 @@ const ChooseLanguageModal:FC<Props> = function({ type, gameType, title = "", ...
         <div className={"choose-language-modal__languages " + (isReversed ? "choose-language-modal__languages--reversed" : "")}>
           <Button
             className="choose-language-modal__language"
-            readonly
             color={Colors.muted}
             weight={Weights.regular}
             type="button"
+            data-readonly="true"
           >
             Ingliz tili
           </Button>
@@ -43,10 +43,10 @@ const ChooseLanguageModal:FC<Props> = function({ type, gameType, title = "", ...
           </button>
           <Button
             className="choose-language-modal__language"
-            readonly
             color={Colors.muted}
             weight={Weights.regular}
             type="button"
+            data-readonly="true"
           >
             O'zbek tili
           </Button>
