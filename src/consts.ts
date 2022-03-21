@@ -32,8 +32,8 @@ export interface Book {
   title: string;
   language_native: Language;
   language_translate: Language;
-  themes_count: number | string;
-  words_count: number | string;
+  themes_count: number | string | null;
+  words_count: number | string | null;
 }
 
 export interface Theme {

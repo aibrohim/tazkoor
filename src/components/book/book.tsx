@@ -6,6 +6,7 @@ import { ReactComponent as Share } from "assets/icons/share.svg";
 
 import "./book.scss";
 import BookCardSkeleton from "components/loaders/book-card-skeleton/book-card-skeleton";
+import ThemeWordsInfo from "components/theme-words-info/theme-words-info";
 
 interface Props extends BookProps {
   className?: string;
@@ -36,10 +37,7 @@ const Book:FC<Props> = function({
           &nbsp;and&nbsp;
           <strong className="book__language">{language_translate.title}</strong>
         </p>
-        <div className="book__footer">
-          {themes_count ? <p className="book__data">Themes: {themes_count}</p> : null}
-          {words_count ? <p className="book__data">Words: {words_count}</p> : null}
-        </div>
+        <ThemeWordsInfo themes={themes_count} words={words_count} />
       </Link>
 
       <Link className="book__share" to={"/share-book/" + id}>
