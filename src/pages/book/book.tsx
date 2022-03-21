@@ -48,6 +48,8 @@ const Book:FC = function() {
   const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
 
   const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
+  console.log(!data && isLoading);
+  
 
   return (
     <>
@@ -57,15 +59,12 @@ const Book:FC = function() {
           {!data && isLoading && <BookInfoSkeleton />}
           {data && <BookInfo {...currentBook} />}
 
-          {
-            currentBook
-            &&
-            <GameBtns
-              language_native={currentBook.language_native}
-              language_translate={currentBook.language_translate}
-              type={WordRelationType.Book} 
-            />
-          }
+          <GameBtns
+            isLoading={!data && isLoading}
+            language_native={currentBook.language_native}
+            language_translate={currentBook.language_translate}
+            type={WordRelationType.Book} 
+          />
           
           <div className="book-page__pages">
             {
