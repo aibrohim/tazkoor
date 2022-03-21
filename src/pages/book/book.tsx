@@ -30,24 +30,24 @@ const Book:FC = function() {
     isLoading,
     data,
   } = useQuery({
-    queryKey: "book_" + id,
+    queryKey: "books",
     queryFn: () => {
       return client("books", {
         method: "GET",
         token,
-        headers: {
-          "theme_id": id
-        }
       })
     },
     enabled: true,
     refetchOnWindowFocus: true,
     retry: 3
   });
+  
 
   const [ activePage, setActivePage ] = useState<BookPages>(BookPages.Themes);
 
   const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
+
+  const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
 
   return (
     <>
@@ -55,15 +55,19 @@ const Book:FC = function() {
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}
-          {data && <BookInfo {...data.books.find((book : BookProps) => book.id === (id ? +id : 0))} />}
+          {data && <BookInfo {...currentBook} />}
 
           <GameBtns type={WordRelationType.Book} />
           
           <div className="book-page__pages">
             {
-              activePage === BookPages.Themes
-                ? <Themes />
-                : <Words type={WordRelationType.Book} />
+              data 
+              &&  
+              (
+                activePage === BookPages.Themes
+                  ? <Themes />
+                  : <Words languages={{language_native: currentBook.language_native, language_translate: currentBook.language_translate}} type={WordRelationType.Book} />
+              )
             }
             <Switch className="book-page__switch" onChange={handleSwitchChange} />
           </div>

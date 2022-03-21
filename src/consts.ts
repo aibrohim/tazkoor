@@ -19,21 +19,19 @@ export enum Weights {
   bold = 700,
 }
 
+export interface Language {
+  id: number;
+  abbreviation: string;
+  icon: string;
+  title: string;
+}
+
 export interface Book {
+  isLoading?: boolean;
   id: number;
   title: string;
-  language_native: {
-    abbreviation: string;
-    flag: string;
-    id: number;
-    name: string;
-  };
-  language_translate: {
-    abbreviation: string;
-    flag: string;
-    id: number;
-    name: string;
-  };
+  language_native: Language;
+  language_translate: Language;
   themes_count: number | string;
   words_count: number | string;
 }
@@ -42,13 +40,6 @@ export interface Theme {
   id: number;
   title: string;
   words_count?: string;
-}
-
-export interface Language {
-  id: number;
-  abbreviation: string;
-  icon: string;
-  title: string;
 }
 
 export enum WordRelationType {

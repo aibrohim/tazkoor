@@ -3,7 +3,7 @@ import AuthFields from "components/auth/fields/fields";
 import AuthSubmit from "components/auth/submit/submit";
 import FixedAddBtn from "components/fixed-add-btn/fixed-add-btn";
 import FormModal from "components/form-modal/form-modal";
-import { Weights, WordRelationType } from "consts";
+import { Language, Weights, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
 import { FC, FormEvent, useEffect, useState } from "react";
 import { useMutation } from "react-query";
@@ -14,10 +14,12 @@ import "./add-word.scss";
 
 interface Props {
   type: WordRelationType;
+  language_native: Language;
+  language_translate: Language;
   onWordAdded: Function
 }
 
-const AddWord:FC<Props> = function({type, onWordAdded}) {
+const AddWord:FC<Props> = function({type, language_native, language_translate, onWordAdded}) {
   const [ isModalOpen, setModalOpen ] = useState<boolean>(false);
 
   const { token } = useAuth();
@@ -25,7 +27,6 @@ const AddWord:FC<Props> = function({type, onWordAdded}) {
   const { id } = useParams();
   const [ title, setTitle ] = useState<string>("");
   const [ titleTranslate, setTitleTranslate ] = useState<string>("");
-  console.log(type === WordRelationType.Book ? "book" : "theme");
 
   const { 
     isLoading,
@@ -81,13 +82,13 @@ const AddWord:FC<Props> = function({type, onWordAdded}) {
         >
           <form onSubmit={handleFormSubmit} className="add-word" action="#">
             <AuthFields>
-              <AuthField value={title} onChange={(e:any) => setTitle(e.target.value)} label="O'zbek" type="text" />
-              <AuthField value={titleTranslate} onChange={(e:any) => setTitleTranslate(e.target.value)} label="English" type="text" />
+              <AuthField value={title} onChange={(e:any) => setTitle(e.target.value)} label={language_native.title} type="text" />
+              <AuthField value={titleTranslate} onChange={(e:any) => setTitleTranslate(e.target.value)} label={language_translate.title} type="text" />
               <AuthField label="So'z turkumi" type="select">
-                <option value="0">Boshqa</option>
-                <option value="1">Ot</option>
-                <option value="2">Sifat</option>
-                <option value="3">Fe'l</option>
+                <option value="1">Boshqa</option>
+                <option value="2">Ot</option>
+                <option value="3">Sifat</option>
+                <option value="4">Fe'l</option>
               </AuthField>
             </AuthFields>
 

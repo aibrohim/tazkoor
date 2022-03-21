@@ -16,7 +16,7 @@ const Theme:FC = function() {
           {/* <BookInfo /> */}
           <GameBtns type={WordRelationType.Theme} />
 
-          <Words type={WordRelationType.Theme} />
+          {/* <Words type={WordRelationType.Theme} /> */}
         </Container>
       </main>
       <Nav />

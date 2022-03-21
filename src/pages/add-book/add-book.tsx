@@ -62,12 +62,19 @@ const AddBook:FC = function() {
     }
   }, [navigate, responseData]);
 
+  useEffect(() => {
+    if (data && wrapperRef) {
+      wrapperRef.current.querySelector("#nativeLanguage").value = data.data[0].id;
+      wrapperRef.current.querySelector("#translateLanguage").value = data.data[1].id;
+    }
+  }, [data]);
+
   const handleFormSubmit = (evt:any) => {
     evt.preventDefault();
 
     const title = wrapperRef?.current.querySelector("#title").value;
     const nativeLang = +wrapperRef?.current.querySelector("#nativeLanguage").value;
-    const translateLang = +wrapperRef?.current.querySelector("#nativeLanguage").value;
+    const translateLang = +wrapperRef?.current.querySelector("#translateLanguage").value;
     
     if (title) {
       mutate({
@@ -77,6 +84,7 @@ const AddBook:FC = function() {
       });
     }
   };
+  
 
   return (
     <>

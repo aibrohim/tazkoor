@@ -3,7 +3,7 @@ import BigSpinner from "components/big-spinner/big-spinner";
 import EditWord from "components/edit-word/edit-word";
 import Title from "components/title/title";
 import WordCard from "components/word-card/word-card";
-import { Word, WordRelationType } from "consts";
+import { Language, Word, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
 import { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
@@ -14,9 +14,13 @@ import "./words.scss";
 
 interface Props {
   type: WordRelationType;
+  languages: {
+    language_native: Language;
+    language_translate: Language;
+  }
 }
 
-const Words:FC<Props> = function({ type }) {
+const Words:FC<Props> = function({ type, languages }) {
   const { id } = useParams();
 
   const { token } = useAuth();
@@ -83,7 +87,7 @@ const Words:FC<Props> = function({ type }) {
         ))}
       </div>
 
-      <AddWord onWordAdded={handleWordAdded} type={type} />
+      <AddWord {...languages} onWordAdded={handleWordAdded} type={type} />
       <EditWord editingId={editingWord} setEditingId={setEditingWord} /> 
     </section>
   );

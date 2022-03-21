@@ -21,7 +21,7 @@ const Themes:FC = function() {
     isLoading,
     data,
   } = useQuery({
-    queryKey: "themes_" + id,
+    queryKey: "book_themes_" + id,
     queryFn: () => {
       return client("themes", {
         method: "GET",

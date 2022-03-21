@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Share } from "assets/icons/share.svg";
 
 import "./book.scss";
+import BookCardSkeleton from "components/loaders/book-card-skeleton/book-card-skeleton";
 
 interface Props extends BookProps {
   className?: string;
@@ -12,6 +13,7 @@ interface Props extends BookProps {
 }
 
 const Book:FC<Props> = function({
+  isLoading,
   id,
   title,
   language_native,
@@ -20,14 +22,19 @@ const Book:FC<Props> = function({
   words_count,
   className = ""
 }) {
+
+  if (isLoading) {
+    return <BookCardSkeleton />;
+  }
+  
   return (
     <article className={"book " + className}>
       <Link className="book__link" to={"/book/" + id}>
         <h3 className="book__title">{title}</h3>
         <p className="book__languages">
-          <strong className="book__language">{language_native.name}</strong>
+          <strong className="book__language">{language_native.title}</strong>
           &nbsp;and&nbsp;
-          <strong className="book__language">{language_translate.name}</strong>
+          <strong className="book__language">{language_translate.title}</strong>
         </p>
         <div className="book__footer">
           {themes_count ? <p className="book__data">Themes: {themes_count}</p> : null}

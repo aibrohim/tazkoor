@@ -10,9 +10,9 @@ const BookInfo:FC<Book> = function({title, language_native, language_translate, 
     <div className="book-info">
       <Title weight={Weights.medium} className="book-info__title">{title}</Title>
       <p className="book-info__languages">
-        <strong className="book-info__languages">{language_native.name}</strong>
+        <strong className="book-info__languages">{language_native.title}</strong>
         &nbsp;and&nbsp;
-        <strong className="book-info__languages">{language_translate.name}</strong>
+        <strong className="book-info__languages">{language_translate.title}</strong>
       </p>
 
       <ThemeWordsInfo themes={themes_count} words={words_count} />

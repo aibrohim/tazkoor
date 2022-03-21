@@ -6,15 +6,15 @@ export const books:Book[] = [
     title: "Advanced English",
     language_native: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     language_translate: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     themes_count: 10,
     words_count: 12
@@ -24,15 +24,15 @@ export const books:Book[] = [
     title: "Advanced Turkish",
     language_native: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     language_translate: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     themes_count: 10,
     words_count: 0
@@ -42,15 +42,15 @@ export const books:Book[] = [
     title: "Advanced France",
     language_native: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     language_translate: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     themes_count: 0,
     words_count: 99
@@ -60,15 +60,15 @@ export const books:Book[] = [
     title: "Advanced Russian",
     language_native: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     language_translate: {
       id: 1,
-      flag: "",
+      icon: "",
       abbreviation: "uz",
-      name: "Uzbek"
+      title: "Uzbek"
     },
     themes_count: 10,
     words_count: 12
