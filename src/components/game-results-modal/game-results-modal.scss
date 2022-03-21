@@ -1,0 +1,44 @@
+@import "styles/variables.scss";
+
+.game-results-modal {
+  max-height: 370px;
+  overflow: auto;
+}
+
+.game-results-modal__list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.game-results-modal__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  background-color: #F4F4F4;
+  border-radius: 14px;
+  padding: 15px 20px;
+  margin-bottom: 8px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.game-results-modal__item-result {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.game-results-modal__item-result--true {
+  color: $green;
+}
+
+.game-results-modal__item-result--false {
+  color: $red;
+}

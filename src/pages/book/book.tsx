@@ -7,7 +7,7 @@ import Nav from "components/nav/nav";
 import Switch from "components/switch/switch";
 import Themes from "components/themes/themes";
 import Words from "components/words/words";
-import { WordRelationType } from "consts";
+import { Book as BookProps, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
 import { FC, useState } from "react";
 import { useQuery } from "react-query";
@@ -55,7 +55,7 @@ const Book:FC = function() {
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}
-          {data && <BookInfo {...data.books[0]} />}
+          {data && <BookInfo {...data.books.find((book : BookProps) => book.id === (id ? +id : 0))} />}
 
           <GameBtns type={WordRelationType.Book} />
           
