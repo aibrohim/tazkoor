@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import Button from "components/button/button";
 import FormModal, { ModalProps } from "components/form-modal/form-modal";
-import { Colors, GameTypes, Weights, WordRelationType } from "consts";
+import { Colors, GameTypes, Language, Weights, WordRelationType } from "consts";
 
 import { ReactComponent as Reverse } from "assets/icons/reverse.svg";
 
@@ -12,9 +12,11 @@ import { useNavigate, useParams } from "react-router-dom";
 interface Props extends ModalProps {
   type: WordRelationType;
   gameType?: GameTypes;
+  language_native: Language;
+  language_translate: Language;
 }
 
-const ChooseLanguageModal:FC<Props> = function({ type, gameType, title = "", ...props }) {
+const ChooseLanguageModal:FC<Props> = function({ type, gameType, title = "", language_native, language_translate, ...props }) {
   const [ isReversed, reverse ] = useState<boolean>(false);
 
   const { id } = useParams();
@@ -36,7 +38,7 @@ const ChooseLanguageModal:FC<Props> = function({ type, gameType, title = "", ...
             type="button"
             data-readonly="true"
           >
-            Ingliz tili
+            {language_native.title}
           </Button>
           <button type="button" onClick={() => reverse(!isReversed)} className="choose-language-modal__language-reverser">
             <Reverse />
@@ -48,7 +50,7 @@ const ChooseLanguageModal:FC<Props> = function({ type, gameType, title = "", ...
             type="button"
             data-readonly="true"
           >
-            O'zbek tili
+            {language_translate.title}
           </Button>
         </div>
 

@@ -42,7 +42,7 @@ const Theme:FC = function() {
 
   return (
     <>
-      <ThemeHeader bookId={themeInfo ? themeInfo.book.id : null} />
+      <ThemeHeader bookId={themeInfo ? themeInfo.book_id : null} />
       <main className="theme-page">
         <Container>
           {(isLoading && !data) && <BookInfoSkeleton />}
@@ -55,24 +55,35 @@ const Theme:FC = function() {
                 id={themeInfo.id}
                 words_count={themeInfo.words_count}
                 themes_count={null}
-                language_native={{
-                  id: 1,
-                  abbreviation: "uz",
-                  icon: "",
-                  title: "Uzbek"
-                }}
-                language_translate={{
-                  id: 1,
-                  abbreviation: "en",
-                  icon: "",
-                  title: "English"
+                language_native={themeInfo.language_native}
+                language_translate={themeInfo.language_translate}
+              />
+            )
+          }
+          
+          {
+            themeInfo
+            &&
+            <GameBtns
+              language_native={themeInfo.language_native}
+              language_translate={themeInfo.language_translate}
+              type={WordRelationType.Theme}
+            />
+          }
+
+          {
+            themeInfo 
+            &&
+            (
+              <Words
+                type={WordRelationType.Theme} 
+                languages={{
+                  language_native: themeInfo.language_native,
+                  language_translate: themeInfo.language_translate
                 }}
               />
             )
           }
-          <GameBtns type={WordRelationType.Theme} />
-
-          {/* <Words type={WordRelationType.Theme} /> */}
         </Container>
       </main>
       <Nav />

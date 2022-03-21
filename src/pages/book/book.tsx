@@ -57,7 +57,15 @@ const Book:FC = function() {
           {!data && isLoading && <BookInfoSkeleton />}
           {data && <BookInfo {...currentBook} />}
 
-          <GameBtns type={WordRelationType.Book} />
+          {
+            currentBook
+            &&
+            <GameBtns
+              language_native={currentBook.language_native}
+              language_translate={currentBook.language_translate}
+              type={WordRelationType.Book} 
+            />
+          }
           
           <div className="book-page__pages">
             {

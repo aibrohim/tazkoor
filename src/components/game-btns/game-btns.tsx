@@ -1,15 +1,17 @@
 import Button from "components/button/button";
 import { FC, useState } from "react";
-import { Colors, GameTypes, Weights, WordRelationType } from "consts";
+import { Colors, GameTypes, Language, Weights, WordRelationType } from "consts";
 
 import "./game-btns.scss";
 import ChooseLanguageModal from "components/choose-language-modal/choose-language-modal";
 
 interface Props {
   type: WordRelationType;
+  language_native: Language;
+  language_translate: Language;
 }
 
-const GameBtns:FC<Props> = function({ type }) {
+const GameBtns:FC<Props> = function({ type, language_native, language_translate }) {
   const [ isLanguageModalOpen, setLanguageModalOpen ] = useState<boolean>(false);
   const [ gameType, setGameType ] = useState<GameTypes>(GameTypes.Card);
 
@@ -56,6 +58,8 @@ const GameBtns:FC<Props> = function({ type }) {
             type={type}
             title=""
             gameType={gameType}
+            language_native={language_native} 
+            language_translate={language_translate}
           />
         )
       }
