@@ -44,7 +44,7 @@ const Words:FC<Props> = function({ type, languages }) {
     retry: 3
   });
 
-  const [ editingWord, setEditingWord ] = useState<number | null>(null);
+  const [ editingWord, setEditingWord ] = useState<Word | null>(null);
 
   const [ words, setWords ] = useState<Word[]>([]);
 
@@ -55,7 +55,10 @@ const Words:FC<Props> = function({ type, languages }) {
   }, [data]);
 
   const handleWordClick = function(evt: any) {
-    setEditingWord(+evt.target.dataset.id)
+    const clickedWord = words.find((word : Word) => word.id === +evt.target.dataset.id);
+    if (clickedWord) {
+      setEditingWord(clickedWord);
+    }
   }
 
   const handleWordAdded = (word:Word) => {
@@ -88,7 +91,7 @@ const Words:FC<Props> = function({ type, languages }) {
       </div>
 
       <AddWord {...languages} onWordAdded={handleWordAdded} type={type} />
-      <EditWord editingId={editingWord} setEditingId={setEditingWord} /> 
+      <EditWord type={type} editingWord={editingWord} setEditingWord={setEditingWord} /> 
     </section>
   );
 };

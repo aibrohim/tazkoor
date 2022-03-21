@@ -1,4 +1,4 @@
-import { FormEvent, ReactElement, useState } from "react";
+import { FormEvent, ReactElement, useEffect, useState } from "react";
 
 import { ReactComponent as Eye } from "assets/icons/eye.svg";
 import { ReactComponent as ClosedEye } from "assets/icons/hidden-eye.svg";
@@ -26,6 +26,7 @@ interface Props {
   className?: string;
   label?: string;
   type?: string;
+  value?: string;
   onChange?: (evt: FormEvent) => void
 }
 
@@ -34,11 +35,18 @@ const Field:FC<Props> = function ({
   className = "", 
   label, 
   type = "text", 
+  value,
   onChange, 
   ...props
 }) {
   const [ passwordVisible, setPasswordVisible ] = useState<EyeTypes>(EyeTypes.isHidden);
   const [ inputValueLength, setInputValuLength ] = useState<number>(0);
+
+  useEffect(() => {
+    if (value) {
+      setInputValuLength(value.length);
+    }
+  }, [value]);
 
   const handleEyeClick = () => {
     setPasswordVisible(passwordVisible === EyeTypes.isHidden ? EyeTypes.isShown : EyeTypes.isHidden);
@@ -62,6 +70,7 @@ const Field:FC<Props> = function ({
           type !== "select"
           ? (
             <input
+              value={value}
               className={"field__input " + className}
               type={inputType} 
               onChange={handleInputChange}
@@ -70,6 +79,7 @@ const Field:FC<Props> = function ({
           )
           : (
             <select
+              value={value}
               className={"field__input field__input--select " + className}
               onChange={handleSelectChange}
               {...props}
