@@ -1,7 +1,7 @@
 import Button from "components/button/button";
 import Container from "components/container/container";
 import { Colors, Word } from "consts";
-import { FC, MouseEvent, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import getStringCapitalized from "utils/stringCapitalizer";
 
 import "./card-body.scss";

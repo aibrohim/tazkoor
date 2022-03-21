@@ -6,13 +6,8 @@ import { useAuth } from "contexts/auth";
 import { useGameResults } from "contexts/result";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { client } from "utils/client";
-
-interface Answer {
-  id: number;
-  answer: boolean;
-}
 
 function shuffleWords(array: Word[]) {
   const inner = array.slice();

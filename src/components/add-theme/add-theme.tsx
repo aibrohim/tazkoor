@@ -5,7 +5,7 @@ import FixedAddBtn from "components/fixed-add-btn/fixed-add-btn";
 import FormModal from "components/form-modal/form-modal";
 import { Weights } from "consts";
 import { useAuth } from "contexts/auth";
-import { FC, FormEvent, useCallback, useEffect, useState } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 import { useParams } from "react-router-dom";
 import { client } from "utils/client";

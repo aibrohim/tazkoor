@@ -28,13 +28,7 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
   const [ title_translate, setTitleTranslate ] = useState<string>("");
   const [ partsofspeech, setPartsofspeech ] = useState<string>("");
 
-  const { 
-    isLoading,
-    mutate,
-    isSuccess,
-    reset,
-    data
-  } = useMutation(() => client(`words`, {
+  useMutation(() => client(`words`, {
     token,
     data: {
       [type === WordRelationType.Book ? "book" : "theme"]: id,
