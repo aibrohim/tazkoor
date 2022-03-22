@@ -1,7 +1,7 @@
 import Container from "components/container/container";
 import BookThemeHeaderPopup from "components/book-theme-header-popup/book-theme-header-popup";
 
-import { FC, useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { ReactComponent as ChevronLeft } from "assets/icons/chevron-left.svg";
@@ -39,7 +39,9 @@ const BookeHeader:FC<Props> = function(props) {
   const [ isPopupOpen, setPopupOpen ] = useState<boolean>(false);
   
   const handlePopupOpenerClick = () => setPopupOpen(true);
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (evt:MouseEvent<HTMLButtonElement>) => {
+    evt.currentTarget.blur();
+    
     mutateAsync().then(() => navigate("/"));
   };
 

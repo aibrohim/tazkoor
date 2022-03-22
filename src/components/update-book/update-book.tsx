@@ -5,7 +5,7 @@ import FormModal from "components/form-modal/form-modal";
 import { Weights } from "consts";
 import { useAuth } from "contexts/auth";
 import { Dispatch, FC, FormEvent, useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { client } from "utils/client";
 
@@ -20,6 +20,8 @@ interface Props {
 }
 
 const UpdateBook:FC<Props> = function({title: defaultTitle, isOpened, setOpen, language_native, language_translate}) {
+  const queryClient = useQueryClient();
+
   const { id } = useParams();
   const { token } = useAuth();
 
@@ -41,7 +43,7 @@ const UpdateBook:FC<Props> = function({title: defaultTitle, isOpened, setOpen, l
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    mutateAsync().then(() => setOpen(false));
+    mutateAsync().then(() => queryClient.refetchQueries("books").then(() => setOpen(false)));
   }
 
   return (

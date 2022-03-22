@@ -1,5 +1,5 @@
 import Popup from "components/popup/popup";
-import { Dispatch, FC } from "react";
+import { Dispatch, FC, MouseEvent } from "react";
 
 import { ReactComponent as Share } from "assets/icons/share.svg";
 import { ReactComponent as Stats } from "assets/icons/statistics.svg";
@@ -16,7 +16,7 @@ interface Props {
   onUsersClick?: () => void;
   onStatsClick?: () => void;
   onEditClick?: () => void;
-  onDeleteClick?: () => void;
+  onDeleteClick?: (evt: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const BookThemeHeaderPopup:FC<Props> = ({
@@ -83,7 +83,7 @@ const BookThemeHeaderPopup:FC<Props> = ({
           </button>
         </li>
         <li className="book-header__popup-item">
-          <button onClick={onDeleteClick ? () => onDeleteClick() : undefined} className="book-header__popup-btn book-header__popup-btn--exit">
+          <button onClick={onDeleteClick ? (evt: MouseEvent<HTMLButtonElement>) => onDeleteClick(evt) : undefined} className="book-header__popup-btn book-header__popup-btn--exit">
             <span className="book-header__popup-btn-inner">
               <span className="book-header__popup-btn-txt">Delete</span>
               <Leave fill="currentColor" width={18} height={18} />
