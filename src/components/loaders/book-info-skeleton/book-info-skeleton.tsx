@@ -5,7 +5,7 @@ const BookInfoSkeleton:FC = function() {
     <div
       style={{
         width: "100%",
-        height: "169px",
+        height: "145px",
         marginTop: "24px",
         borderRadius: "14px"
       }}

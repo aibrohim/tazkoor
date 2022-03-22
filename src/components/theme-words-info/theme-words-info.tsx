@@ -13,15 +13,13 @@ const ThemeWordsInfo:FC<Props> = function({themes, words}) {
       {
         Boolean(themes) &&
         <p className="theme-words-info__item">
-          <strong className="theme-words-info__item-title">Themes:</strong>
+          <strong className="theme-words-info__item-title">Themes: </strong>
           {themes}
         </p>
       }
       {
-        Boolean(words)
-        &&
         <p className="theme-words-info__item">
-          <strong className="theme-words-info__item-title">Words:</strong>
+          <strong className="theme-words-info__item-title">Words: </strong>
           {words}
         </p>
       }

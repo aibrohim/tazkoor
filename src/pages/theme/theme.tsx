@@ -61,16 +61,12 @@ const Theme:FC = function() {
             )
           }
           
-          {
-            themeInfo
-            &&
-            <GameBtns
-              isLoading={isLoading}
-              language_native={themeInfo.language_native}
-              language_translate={themeInfo.language_translate}
-              type={WordRelationType.Theme}
-            />
-          }
+          <GameBtns
+            isLoading={isLoading}
+            language_native={themeInfo?.language_native}
+            language_translate={themeInfo?.language_translate}
+            type={WordRelationType.Theme}
+          />
 
           {
             themeInfo 

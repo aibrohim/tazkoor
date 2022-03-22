@@ -35,7 +35,7 @@ const GameBtns:FC<Props> = function({ type, language_native, language_translate,
   return (
     <div className="game-btns">
       {
-        isLoading
+        (isLoading && !language_native && !language_translate)
         ? 
           (
             <>

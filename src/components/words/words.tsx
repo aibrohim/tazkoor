@@ -75,7 +75,7 @@ const Words:FC<Props> = function({ type, languages }) {
       </div>
 
       <div className="words__list">
-        {isLoading && <BigSpinner />}
+        {(!data && isLoading) && <BigSpinner />}
 
         {(data && !words.length) && <p>Ko'rsatish uchun so'zlar yo'q</p>}
         

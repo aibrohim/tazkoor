@@ -61,8 +61,8 @@ const Book:FC = function() {
 
           <GameBtns
             isLoading={!data && isLoading}
-            language_native={currentBook.language_native}
-            language_translate={currentBook.language_translate}
+            language_native={currentBook?.language_native}
+            language_translate={currentBook?.language_translate}
             type={WordRelationType.Book} 
           />
           
