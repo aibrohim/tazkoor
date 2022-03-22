@@ -1,5 +1,5 @@
 import Container from "components/container/container";
-import { AnimationEvent, FC, ReactElement, useEffect, useState } from "react";
+import { AnimationEvent, FC, MouseEvent, ReactElement, useEffect, useState } from "react";
 
 import "./form-modal.scss";
 
@@ -49,11 +49,17 @@ const FormModal:FC<ModalProps> = function({
     }
   }
 
+  const hanldeModalClick = (evt: MouseEvent<HTMLDivElement>) => {
+    if (evt.target === evt.currentTarget) {
+      setClosing(true);
+    }
+  }
+
   const openClass = isOpen ? "form-modal--opened " : "";
   const closingClass = isClosing ? "form-modal--closing " : "";
 
   return (
-    <div onAnimationEnd={handleModalAnimationEnd} className={"form-modal " + openClass + closingClass}>
+    <div onClick={hanldeModalClick} onAnimationEnd={handleModalAnimationEnd} className={"form-modal " + openClass + closingClass}>
       <div className="form-modal__content">
         <Container className="form-modal__container">
           <h2 className="form-modal__title">{title}</h2>
