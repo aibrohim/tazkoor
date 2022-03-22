@@ -6,7 +6,7 @@ import { Theme } from "consts";
 import { useAuth } from "contexts/auth";
 import { FC, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { client } from "utils/client";
 
 import "./themes.scss";
@@ -14,6 +14,7 @@ import "./themes.scss";
 const Themes:FC = function() {
   const { token } = useAuth();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [ themes, setThemes ] = useState<Theme[]>([]);
 
@@ -47,6 +48,8 @@ const Themes:FC = function() {
       theme,
       ...themes,
     ]);
+
+    navigate(`/theme/${theme.id}`);
   }
   
   

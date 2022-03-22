@@ -26,7 +26,7 @@ const AddTheme:FC<Props> = function({onThemeAdded}) {
 
   const { 
     isLoading,
-    mutate,
+    mutateAsync,
     isSuccess,
     data
   } = useMutation(() => client(`themes`, {
@@ -49,7 +49,7 @@ const AddTheme:FC<Props> = function({onThemeAdded}) {
     evt.preventDefault();
 
     if (title.trim().length) {
-      mutate();
+      mutateAsync();
     }
   }
 

@@ -27,7 +27,7 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
 
   const [ title, setTitle ] = useState<string>("");
   const [ title_translate, setTitleTranslate ] = useState<string>("");
-  const [ partsofspeech, setPartsofspeech ] = useState<string>("");
+  const [ partsofspeech, setPartsofspeech ] = useState<string>("1");
 
   const { mutateAsync, isLoading } = useMutation(() => client(`words`, {
     token,
