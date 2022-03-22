@@ -1,0 +1,11 @@
+.word-card-skeleton {
+  height: 96px;
+  width: calc((100% - 10px) / 2);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+}

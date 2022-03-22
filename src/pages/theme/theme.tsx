@@ -68,19 +68,17 @@ const Theme:FC = function() {
             type={WordRelationType.Theme}
           />
 
-          {
-            themeInfo 
-            &&
-            (
-              <Words
-                type={WordRelationType.Theme} 
-                languages={{
+          <Words
+            type={WordRelationType.Theme} 
+            languages={
+              themeInfo
+                ? {
                   language_native: themeInfo.language_native,
                   language_translate: themeInfo.language_translate
-                }}
-              />
-            )
-          }
+                }
+                : undefined
+            }
+          />
         </Container>
       </main>
       <Nav />

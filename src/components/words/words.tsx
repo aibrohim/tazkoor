@@ -1,6 +1,6 @@
 import AddWord from "components/add-word/add-word";
-import BigSpinner from "components/big-spinner/big-spinner";
 import EditWord from "components/edit-word/edit-word";
+import WordCardSkeleton from "components/loaders/word-card-skeleton/word-card-skeleton";
 import Title from "components/title/title";
 import WordCard from "components/word-card/word-card";
 import { Language, Word, WordRelationType } from "consts";
@@ -14,7 +14,7 @@ import "./words.scss";
 
 interface Props {
   type: WordRelationType;
-  languages: {
+  languages?: {
     language_native: Language;
     language_translate: Language;
   }
@@ -75,7 +75,14 @@ const Words:FC<Props> = function({ type, languages }) {
       </div>
 
       <div className="words__list">
-        {(!data && isLoading) && <BigSpinner />}
+        {(isLoading && !data) && (
+          <>
+            <WordCardSkeleton />
+            <WordCardSkeleton />
+            <WordCardSkeleton />
+            <WordCardSkeleton />
+          </> 
+        )}
 
         {(data && !words.length) && <p>Ko'rsatish uchun so'zlar yo'q</p>}
         
@@ -90,8 +97,8 @@ const Words:FC<Props> = function({ type, languages }) {
         ))}
       </div>
 
-      <AddWord {...languages} onWordAdded={handleWordAdded} type={type} />
-      <EditWord type={type} editingWord={editingWord} setEditingWord={setEditingWord} /> 
+      {languages && <AddWord {...languages} onWordAdded={handleWordAdded} type={type} />}
+      {languages && <EditWord type={type} editingWord={editingWord} setEditingWord={setEditingWord} /> }
     </section>
   );
 };
