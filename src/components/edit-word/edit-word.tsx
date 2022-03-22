@@ -72,14 +72,10 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
     evt.preventDefault();
     
     if (
-      (title.trim()
+      (title.trim() && title.trim().toLowerCase() !== editingWord.title.toLowerCase())
       ||
-      title.trim().toLowerCase() !== editingWord.title.toLowerCase())
-      && 
-      (title_translate.trim()
+      (title_translate.trim() && title_translate.trim().toLowerCase() !== editingWord.title_translate.toLowerCase())
       ||
-      title_translate.trim().toLowerCase() !== editingWord.title_translate.toLowerCase())
-      &&
       +partsofspeech !== editingWord.partsofspeech
     ) {
       mutateAsync().then(() => queryClient.refetchQueries(`${type}_${typeId}_words`).then(() => setEditingWord(null)));
