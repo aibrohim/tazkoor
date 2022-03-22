@@ -1,5 +1,4 @@
 import AddTheme from "components/add-theme/add-theme";
-import BigSpinner from "components/big-spinner/big-spinner";
 import ThemeCardSkeleton from "components/loaders/theme-card-skeleton/theme-card-skeleton";
 import ThemeCard from "components/theme-card/theme-card";
 import Title from "components/title/title";
