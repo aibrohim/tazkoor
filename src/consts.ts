@@ -65,3 +65,8 @@ export interface WordResult extends Word {
   seconds: number;
   isTrue: boolean;
 }
+
+export enum HeaderPopupTypes {
+  Book,
+  Theme
+}

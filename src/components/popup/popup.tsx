@@ -1,5 +1,5 @@
 import useEventListener from "hooks/useEventListener";
-import { AnimationEvent, FC, ReactNode, useEffect, useState } from "react";
+import { AnimationEvent, FC, ReactNode, useState } from "react";
 
 import "./popup.scss";
 
