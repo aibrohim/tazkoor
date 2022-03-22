@@ -1,5 +1,5 @@
 import Container from "components/container/container";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { ReactComponent as ChevronLeft } from "assets/icons/chevron-left.svg";
@@ -14,6 +14,14 @@ import "./book-header.scss";
 import Popup from "components/popup/popup";
 
 const BookeHeader:FC = function() {
+  const [ isPopupOpen, setPopupOpen ] = useState<boolean>(false);
+
+  const handlePopupClosed = () => {
+    console.log("ishladim");
+    setPopupOpen(false)
+  };
+  const handlePopupOpenerClick = () => setPopupOpen(true);
+
   return (
     <header className="book-header">
       <Container className="book-header__container">
@@ -22,54 +30,60 @@ const BookeHeader:FC = function() {
         </Link>
         <p className="book-header__title">Book</p>
         <div className="book-header__popup-wrapper">
-          <button className="book-header__popup-toggler">
+          <button onClick={handlePopupOpenerClick} className="book-header__popup-toggler">
             <Dots className="book-header__popup-toggler-icon" />
           </button>
 
-          <Popup className="book-header__popup">
-            <ul className="book-header__popup-list">
-              <li className="book-header__popup-item">
-                <button className="book-header__popup-btn">
-                  <span className="book-header__popup-btn-inner">
-                    <span className="book-header__popup-btn-txt">Share</span>
-                    <Share fill="currentColor" width={18} height={18} />
-                  </span>
-                </button>
-              </li>
-              <li className="book-header__popup-item">
-                <button className="book-header__popup-btn">
-                  <span className="book-header__popup-btn-inner">
-                    <span className="book-header__popup-btn-txt">Users</span>
-                    <Users fill="currentColor" width={18} height={18} />
-                  </span>
-                </button>
-              </li>
-              <li className="book-header__popup-item">
-                <button className="book-header__popup-btn">
-                  <span className="book-header__popup-btn-inner">
-                    <span className="book-header__popup-btn-txt">Statistics</span>
-                    <Stats fill="currentColor" width={18} height={18} />
-                  </span>
-                </button>
-              </li>
-              <li className="book-header__popup-item">
-                <button className="book-header__popup-btn">
-                  <span className="book-header__popup-btn-inner">
-                    <span className="book-header__popup-btn-txt">Edit</span>
-                    <Pen fill="currentColor" width={18} height={18} />
-                  </span>
-                </button>
-              </li>
-              <li className="book-header__popup-item">
-                <button className="book-header__popup-btn book-header__popup-btn--exit">
-                  <span className="book-header__popup-btn-inner">
-                    <span className="book-header__popup-btn-txt">Leave</span>
-                    <Leave fill="currentColor" width={18} height={18} />
-                  </span>
-                </button>
-              </li>
-            </ul>
-          </Popup>
+          {
+            isPopupOpen
+            &&
+            (
+              <Popup onPopupClosed={handlePopupClosed} className="book-header__popup">
+                <ul className="book-header__popup-list">
+                  <li className="book-header__popup-item">
+                    <button className="book-header__popup-btn">
+                      <span className="book-header__popup-btn-inner">
+                        <span className="book-header__popup-btn-txt">Share</span>
+                        <Share fill="currentColor" width={18} height={18} />
+                      </span>
+                    </button>
+                  </li>
+                  <li className="book-header__popup-item">
+                    <button className="book-header__popup-btn">
+                      <span className="book-header__popup-btn-inner">
+                        <span className="book-header__popup-btn-txt">Users</span>
+                        <Users fill="currentColor" width={18} height={18} />
+                      </span>
+                    </button>
+                  </li>
+                  <li className="book-header__popup-item">
+                    <button className="book-header__popup-btn">
+                      <span className="book-header__popup-btn-inner">
+                        <span className="book-header__popup-btn-txt">Statistics</span>
+                        <Stats fill="currentColor" width={18} height={18} />
+                      </span>
+                    </button>
+                  </li>
+                  <li className="book-header__popup-item">
+                    <button className="book-header__popup-btn">
+                      <span className="book-header__popup-btn-inner">
+                        <span className="book-header__popup-btn-txt">Edit</span>
+                        <Pen fill="currentColor" width={18} height={18} />
+                      </span>
+                    </button>
+                  </li>
+                  <li className="book-header__popup-item">
+                    <button className="book-header__popup-btn book-header__popup-btn--exit">
+                      <span className="book-header__popup-btn-inner">
+                        <span className="book-header__popup-btn-txt">Leave</span>
+                        <Leave fill="currentColor" width={18} height={18} />
+                      </span>
+                    </button>
+                  </li>
+                </ul>
+              </Popup>
+            )
+          }
         </div>
       </Container>
     </header>
