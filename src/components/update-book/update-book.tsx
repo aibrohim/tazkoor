@@ -4,7 +4,7 @@ import AuthSubmit from "components/auth/submit/submit";
 import FormModal from "components/form-modal/form-modal";
 import { Weights } from "consts";
 import { useAuth } from "contexts/auth";
-import { Dispatch, FC, FormEvent, useRef, useState } from "react";
+import { Dispatch, FC, FormEvent, useState } from "react";
 import { useMutation } from "react-query";
 import { useParams } from "react-router-dom";
 import { client } from "utils/client";
