@@ -13,6 +13,7 @@ import "./book-header.scss";
 import { client } from "utils/client";
 import { useMutation } from "react-query";
 import { useAuth } from "contexts/auth";
+import ConfirmModal from "components/confirm-modal/confirm-modal";
 
 interface Props {
   onShareClick?: () => void;
@@ -28,6 +29,8 @@ const BookeHeader:FC<Props> = function(props) {
 
   const { token } = useAuth();
 
+  const [ isDeleteModalOpen, setDeleteModalOpen ] = useState<boolean>(false);
+
   const { mutateAsync } = useMutation(() => client(`books`, {
     token,
     method: "DELETE",
@@ -42,8 +45,11 @@ const BookeHeader:FC<Props> = function(props) {
   const handleDeleteClick = (evt:MouseEvent<HTMLButtonElement>) => {
     evt.currentTarget.blur();
     
-    mutateAsync().then(() => navigate("/"));
+    setDeleteModalOpen(true);
+    setPopupOpen(false);
   };
+
+  const handleAcceptClick = () => mutateAsync().then(() => navigate("/"));
 
   return (
     <header className="book-header">
@@ -66,6 +72,8 @@ const BookeHeader:FC<Props> = function(props) {
           />
         </div>
       </Container>
+
+      {isDeleteModalOpen && <ConfirmModal onAcceptClick={handleAcceptClick} title="Do you really want to delete this book?" />}
     </header>
   );
 }

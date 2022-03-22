@@ -1,4 +1,4 @@
-import { AnimationEvent, forwardRef, ReactNode, useImperativeHandle, useState } from "react";
+import { AnimationEvent, forwardRef, MouseEvent, ReactNode, useImperativeHandle, useState } from "react";
 
 import "./modal.scss";
 
@@ -15,8 +15,10 @@ export interface RefMethods {
 const Modal = forwardRef<RefMethods, Props>(({children, onShadowClick}, ref) => {
   const [ isOpen, setOpen ] = useState<boolean>(true);
 
-  const handleShadowClick = () => {
-    setOpen(false);
+  const handleShadowClick = (evt: MouseEvent<HTMLDivElement>) => {
+    if (evt.target === evt.currentTarget) {
+      setOpen(false);
+    }
   };
   
   const handleAnimationEnd = (evt: AnimationEvent<HTMLDivElement>) => {

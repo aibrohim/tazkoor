@@ -70,10 +70,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
-    console.log(editingWord.partsofspeech);
-    console.log(+partsofspeech);
-    
     
     if (
       (title.trim()
@@ -99,7 +95,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
       description="Whether a medieval typesetter chose to garble a well-known"
       title="Edit word"
     >
-      <>
       <form onSubmit={handleFormSubmit} className="edit-word" action="#">
           <AuthFields>
             <AuthField value={title} onChange={handleTitleChange} label="O'zbek" type="text" />
@@ -118,7 +113,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
 
           <Button onClick={handleDeleteClick} disabled={isDeleting} type="button" className="edit-word__delete" weight={Weights.semiBold}>{isDeleting ? "Deleting" : "Delete"}</Button>
         </form>
-        </>
     </FormModal>
   );
 };

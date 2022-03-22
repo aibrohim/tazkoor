@@ -9,6 +9,7 @@ import { HeaderPopupTypes } from "consts";
 import { useMutation } from "react-query";
 import { client } from "utils/client";
 import { useAuth } from "contexts/auth";
+import ConfirmModal from "components/confirm-modal/confirm-modal";
 
 interface Props {
   bookId: number | null
@@ -18,6 +19,7 @@ const ThemeHeader:FC<Props> = function({bookId}) {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [ isDeleteModalOpen, setDeleteModalOpen ] = useState<boolean>(false);
   const [ isPopupOpen, setPopupOpen ] = useState<boolean>(false);
 
   const { token } = useAuth();
@@ -34,8 +36,11 @@ const ThemeHeader:FC<Props> = function({bookId}) {
   const handleDeleteClick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.currentTarget.blur();
 
-    mutateAsync().then(() => navigate(`/book/${bookId}`))
+    setPopupOpen(false);
+    setDeleteModalOpen(true);
   };
+
+  const handleAcceptClick = () => mutateAsync().then(() => navigate(`/book/${bookId}`));
 
   return (
     <header className="book-header">
@@ -57,6 +62,7 @@ const ThemeHeader:FC<Props> = function({bookId}) {
           />
         </div>
       </Container>
+      {isDeleteModalOpen && <ConfirmModal onAcceptClick={handleAcceptClick} title="Do you really want to delete this theme?" />}
     </header>
   );
 }
