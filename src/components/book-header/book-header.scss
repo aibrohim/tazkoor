@@ -77,12 +77,18 @@
   color: #000;
   transition: 0.1s ease all;
   cursor: pointer;
+  outline: none;
 
   &:hover {
     background-color: #eee;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &:active {
+    outline: none;
     opacity: 0.7;
   }
 }
