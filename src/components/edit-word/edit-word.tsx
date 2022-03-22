@@ -82,11 +82,11 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
       &&
       +partsofspeech !== editingWord.partsofspeech
     ) {
-      mutateAsync().then(() => queryClient.refetchQueries([`${type}_${typeId}_words`]).then(() => setEditingWord(null)));
+      mutateAsync().then(() => queryClient.refetchQueries(`${type}_${typeId}_words`).then(() => setEditingWord(null)));
     }
   }
 
-  const handleDeleteClick = () => deleteAsync().then(() => queryClient.refetchQueries([`${type}_${typeId}_words`]).then(() => setEditingWord(null)));
+  const handleDeleteClick = () => deleteAsync().then(() => queryClient.refetchQueries(`${type}_${typeId}_words`).then(() => setEditingWord(null)));
 
   return (
     <FormModal
