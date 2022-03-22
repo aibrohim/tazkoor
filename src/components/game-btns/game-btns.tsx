@@ -13,8 +13,6 @@ interface Props {
 }
 
 const GameBtns:FC<Props> = function({ type, language_native, language_translate, isLoading }) {
-  console.log(isLoading);
-  
   const [ isLanguageModalOpen, setLanguageModalOpen ] = useState<boolean>(false);
   const [ gameType, setGameType ] = useState<GameTypes>(GameTypes.Card);
 

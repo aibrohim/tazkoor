@@ -48,9 +48,7 @@ const Book:FC = function() {
   const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
 
   const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
-  console.log(!data && isLoading);
   
-
   return (
     <>
       <BookeHeader />

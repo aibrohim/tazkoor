@@ -37,7 +37,6 @@ const Theme:FC = function() {
   });
   
   const themeInfo = data && data.data;
-  console.log(themeInfo);
   
 
   return (
