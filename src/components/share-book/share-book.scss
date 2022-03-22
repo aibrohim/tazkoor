@@ -1,0 +1,41 @@
+.share-book {
+  padding: 38px 0 24px;
+}
+
+.share-book__title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.share-book__description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* or 143% */
+
+  text-align: center;
+
+  color: #333333;
+}
+
+.share-book__id {
+  font-size: 24px;
+  display: block;
+  margin-top: 15px;
+  color: #000;
+}
+
+.share-book__btn {
+  margin-top: 48px;
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 17px;
+}

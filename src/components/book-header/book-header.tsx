@@ -7,10 +7,19 @@ import { Link } from "react-router-dom";
 import { ReactComponent as ChevronLeft } from "assets/icons/chevron-left.svg";
 import { ReactComponent as Dots } from "assets/icons/dots.svg"
 
-import "./book-header.scss";
 import { HeaderPopupTypes } from "consts";
 
-const BookeHeader:FC = function() {
+import "./book-header.scss";
+
+interface Props {
+  onShareClick?: () => void;
+  onUsersClick?: () => void;
+  onStatsClick?: () => void;
+  onEditClick?: () => void;
+  onDeleteClick?: () => void;
+}
+
+const BookeHeader:FC<Props> = function(props) {
   const [ isPopupOpen, setPopupOpen ] = useState<boolean>(false);
   
   const handlePopupOpenerClick = () => setPopupOpen(true);
@@ -31,6 +40,7 @@ const BookeHeader:FC = function() {
             isPopupOpen={isPopupOpen}
             setPopupOpen={setPopupOpen}
             type={HeaderPopupTypes.Book}
+            {...props}
           />
         </div>
       </Container>

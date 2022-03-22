@@ -4,6 +4,7 @@ import Container from "components/container/container";
 import GameBtns from "components/game-btns/game-btns";
 import BookInfoSkeleton from "components/loaders/book-info-skeleton/book-info-skeleton";
 import Nav from "components/nav/nav";
+import ShareBook from "components/share-book/share-book";
 import Switch from "components/switch/switch";
 import Themes from "components/themes/themes";
 import Words from "components/words/words";
@@ -44,18 +45,24 @@ const Book:FC = function() {
   
 
   const [ activePage, setActivePage ] = useState<BookPages>(BookPages.Themes);
+  const [ isShareModalOpen, setShareModalOpen ] = useState<boolean>(false);
 
   const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
+
+  const handleShareModalClose = () => setShareModalOpen(false);
+  const handleShareBtnClick = () => {
+    setShareModalOpen(true);
+  };
 
   const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
   
   return (
     <>
-      <BookeHeader />
+      <BookeHeader onShareClick={handleShareBtnClick} />
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}
-          {data && <BookInfo {...currentBook} />}
+          {currentBook && <BookInfo {...currentBook} />}
 
           <GameBtns
             isLoading={!data && isLoading}
@@ -80,6 +87,8 @@ const Book:FC = function() {
             <Switch className="book-page__switch" onChange={handleSwitchChange} />
           </div>
         </Container>
+
+        {isShareModalOpen && <ShareBook title="Bir nima kitob" onClose={handleShareModalClose} />}
       </main>
       <Nav />
     </>

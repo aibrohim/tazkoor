@@ -1,0 +1,90 @@
+@keyframes info-modal-content-open {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes info-modal-content-close {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.info-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  overflow: auto;
+}
+
+.info-modal__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+.info-modal__content {
+  animation: info-modal-content-open .15s linear;
+  margin-top: auto;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.info-modal--closing .info-modal__content {
+  animation: info-modal-content-close .15s linear;
+}
+
+.info-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eee;
+  }
+  
+  &:active {
+    background-color: rgba(#eee, 0.7);
+  }
+
+  &::before, 
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #000;
+    border-radius: 4px;
+    height: 1px;
+    width: 15px;
+    content: '';
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
