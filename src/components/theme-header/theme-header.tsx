@@ -12,10 +12,11 @@ import { useAuth } from "contexts/auth";
 import ConfirmModal from "components/confirm-modal/confirm-modal";
 
 interface Props {
-  bookId: number | null
+  bookId: number | null,
+  onEditClick?: () => void;
 }
 
-const ThemeHeader:FC<Props> = function({bookId}) {
+const ThemeHeader:FC<Props> = function({bookId, onEditClick}) {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -59,6 +60,7 @@ const ThemeHeader:FC<Props> = function({bookId}) {
             setPopupOpen={setPopupOpen}
             type={HeaderPopupTypes.Theme}
             onDeleteClick={handleDeleteClick}
+            onEditClick={onEditClick}
           />
         </div>
       </Container>
