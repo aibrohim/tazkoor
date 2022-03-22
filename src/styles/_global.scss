@@ -44,7 +44,7 @@ main {
   flex-grow: 1;
 }
 
-@media screen and (min-width: 700px) and (min-height: 915px) {
+@media screen and (min-width: 700px) and (min-height: 715px) {
   body {
     background-color: #333;
     display: flex;
@@ -54,7 +54,7 @@ main {
 
   #root {
     width: 700px;
-    max-height: 912px;
+    max-height: 712px;
     padding: 15px 0;
     border-radius: 15px;
     overflow: auto;

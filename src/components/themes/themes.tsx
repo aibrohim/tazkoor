@@ -1,5 +1,6 @@
 import AddTheme from "components/add-theme/add-theme";
 import BigSpinner from "components/big-spinner/big-spinner";
+import ThemeCardSkeleton from "components/loaders/theme-card-skeleton/theme-card-skeleton";
 import ThemeCard from "components/theme-card/theme-card";
 import Title from "components/title/title";
 import { Theme } from "consts";
@@ -55,7 +56,15 @@ const Themes:FC = function() {
       <div className="themes__header">
         <Title className="themes__heading">Themes</Title>
       </div>
-      {isLoading && <BigSpinner margin="50px auto" />}
+      {
+        isLoading && !data
+        && (
+          <>
+            <ThemeCardSkeleton />
+            <ThemeCardSkeleton />
+          </>
+        )
+      }
       {
         themes.length
           ? (

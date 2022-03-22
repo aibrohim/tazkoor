@@ -68,13 +68,16 @@ const Book:FC = function() {
           
           <div className="book-page__pages">
             {
-              data 
-              &&  
-              (
-                activePage === BookPages.Themes
-                  ? <Themes />
-                  : <Words languages={{language_native: currentBook.language_native, language_translate: currentBook.language_translate}} type={WordRelationType.Book} />
-              )
+              activePage === BookPages.Themes
+                ? <Themes />
+                : <Words
+                  languages={
+                    currentBook
+                      ? {language_native: currentBook.language_native, language_translate: currentBook.language_translate}
+                      : undefined
+                  }
+                  type={WordRelationType.Book}
+                />
             }
             <Switch className="book-page__switch" onChange={handleSwitchChange} />
           </div>
