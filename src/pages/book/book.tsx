@@ -7,6 +7,7 @@ import Nav from "components/nav/nav";
 import ShareBook from "components/share-book/share-book";
 import Switch from "components/switch/switch";
 import Themes from "components/themes/themes";
+import UpdateBook from "components/update-book/update-book";
 import Words from "components/words/words";
 import { Book as BookProps, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
@@ -89,6 +90,7 @@ const Book:FC = function() {
         </Container>
 
         {isShareModalOpen && <ShareBook title="Bir nima kitob" onClose={handleShareModalClose} />}
+        <UpdateBook />
       </main>
       <Nav />
     </>
