@@ -47,6 +47,7 @@ const Book:FC = function() {
 
   const [ activePage, setActivePage ] = useState<BookPages>(BookPages.Themes);
   const [ isShareModalOpen, setShareModalOpen ] = useState<boolean>(false);
+  const [ isUpdateModalOpen, setUpdateModalOpen ] = useState<boolean>(false);
 
   const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
 
@@ -54,12 +55,15 @@ const Book:FC = function() {
   const handleShareBtnClick = () => {
     setShareModalOpen(true);
   };
+  const handleUpdateBtnClick = () => {
+    setUpdateModalOpen(true);
+  };
 
   const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
   
   return (
     <>
-      <BookeHeader onShareClick={handleShareBtnClick} />
+      <BookeHeader onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} />
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}
@@ -90,7 +94,17 @@ const Book:FC = function() {
         </Container>
 
         {isShareModalOpen && <ShareBook title="Bir nima kitob" onClose={handleShareModalClose} />}
-        <UpdateBook />
+        {
+          currentBook
+          && 
+          <UpdateBook
+            isOpened={isUpdateModalOpen}
+            setOpen={setUpdateModalOpen}
+            title={currentBook.title}
+            language_native={currentBook.language_native.id}
+            language_translate={currentBook.language_translate.id}
+          />
+          }
       </main>
       <Nav />
     </>

@@ -27,6 +27,7 @@ interface Props {
   label?: string;
   type?: string;
   value?: string;
+  defaultValue?: string;
   onChange?: (evt: FormEvent) => void
 }
 
@@ -36,6 +37,7 @@ const Field:FC<Props> = function ({
   label, 
   type = "text", 
   value,
+  defaultValue,
   onChange, 
   ...props
 }) {
@@ -47,6 +49,12 @@ const Field:FC<Props> = function ({
       setInputValuLength(value.length);
     }
   }, [value]);
+  
+  useEffect(() => {
+    if (defaultValue) {
+      setInputValuLength(defaultValue.length);
+    }
+  }, [defaultValue]);
 
   const handleEyeClick = () => {
     setPasswordVisible(passwordVisible === EyeTypes.isHidden ? EyeTypes.isShown : EyeTypes.isHidden);
@@ -74,6 +82,7 @@ const Field:FC<Props> = function ({
               className={"field__input " + className}
               type={inputType} 
               onChange={handleInputChange}
+              defaultValue={defaultValue}
               {...props}
             />
           )
@@ -82,6 +91,7 @@ const Field:FC<Props> = function ({
               value={value}
               className={"field__input field__input--select " + className}
               onChange={handleSelectChange}
+              defaultValue={defaultValue}
               {...props}
             />
           )
