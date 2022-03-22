@@ -56,8 +56,8 @@ const CardBody:FC<Props> = function({wordData, length, order, onAnswerCheck}) {
             <span className="card-body__time-remaining">0:{secondsRemaining}</span>
           </div>
           <div className={"card-body__word card-body__word--back"}> 
-            <p className="card-body__word-name">{getStringCapitalized(title)}</p>
-            <p className="card-body__word-translation">{getStringCapitalized(title_translate)}</p>
+            <p className="card-body__word-name">{getStringCapitalized(title_translate)}</p>
+            <p className="card-body__word-translation">{getStringCapitalized(title)}</p>
             <span className="card-body__word-order">{order}/{length}</span>
           </div>
         </div>
