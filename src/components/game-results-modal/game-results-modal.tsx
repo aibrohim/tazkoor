@@ -21,7 +21,7 @@ const GameResultsModal:FC<Props> = function({isOpen, setOpen, results}) {
       <div className="game-results-modal">
         <ul className="game-results-modal__list">
           {results.map(word => (
-            <li className="game-results-modal__item">
+            <li key={word.id} className="game-results-modal__item">
               {word.title}
               <span className={"game-results-modal__item-result " + generateAnswerClass(word.isTrue)}>{word.isTrue ? "True" : "False"}</span>
             </li>

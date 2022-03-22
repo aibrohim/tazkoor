@@ -43,7 +43,10 @@ const UpdateBook:FC<Props> = function({title: defaultTitle, isOpened, setOpen, l
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    mutateAsync().then(() => queryClient.refetchQueries("books").then(() => setOpen(false)));
+    
+    if (title.trim() && title.toLowerCase() !== defaultTitle.toLowerCase()) {
+      mutateAsync().then(() => queryClient.refetchQueries("books").then(() => setOpen(false)));
+    }
   }
 
   return (

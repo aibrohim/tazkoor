@@ -17,11 +17,11 @@
   cursor: pointer;
 
   &:active {
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   &:disabled {
-    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0.5;
   }
 }
 

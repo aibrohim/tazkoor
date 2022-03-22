@@ -29,7 +29,7 @@ const Words:FC<Props> = function({ type, languages }) {
     isLoading,
     data,
   } = useQuery({
-    queryKey: type === WordRelationType.Book ? "book_" + id + "_words" : "theme_" + id + "_words",
+    queryKey: `${type}_${id}_words`,
     queryFn: () => {
       return client("words", {
         method: "GET",
