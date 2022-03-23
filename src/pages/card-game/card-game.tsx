@@ -1,4 +1,3 @@
-import BigSpinner from "components/big-spinner/big-spinner";
 import CardBody from "components/card-body/card-body";
 import CardGameHeader from "components/card-game-header/card-game-header";
 import CardSkeleton from "components/loaders/card-skeleton/card-skeleton";
