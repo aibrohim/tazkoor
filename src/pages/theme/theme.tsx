@@ -42,6 +42,7 @@ const Theme:FC = function() {
   });
   
   const themeInfo = data && data.data;
+  console.log(themeInfo);
   
 
   return (
@@ -73,6 +74,7 @@ const Theme:FC = function() {
           />
 
           <Words
+            bookId={themeInfo?.book_id}
             type={WordRelationType.Theme} 
             languages={
               themeInfo

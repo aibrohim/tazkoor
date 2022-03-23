@@ -14,13 +14,14 @@ import "./words.scss";
 
 interface Props {
   type: WordRelationType;
+  bookId?: number;
   languages?: {
     language_native: Language;
     language_translate: Language;
   }
 }
 
-const Words:FC<Props> = function({ type, languages }) {
+const Words:FC<Props> = function({ type, languages, bookId }) {
   const { id } = useParams();
 
   const { token } = useAuth();
@@ -97,7 +98,7 @@ const Words:FC<Props> = function({ type, languages }) {
         ))}
       </div>
 
-      {languages && <AddWord {...languages} onWordAdded={handleWordAdded} type={type} />}
+      {languages && <AddWord {...languages} onWordAdded={handleWordAdded} type={type} bookId={bookId} />}
       {languages && <EditWord type={type} editingWord={editingWord} setEditingWord={setEditingWord} /> }
     </section>
   );

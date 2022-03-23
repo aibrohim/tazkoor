@@ -1,3 +1,4 @@
+import RedirectToMain from "components/redirect-to-main/redirect-to-main"
 import EmailResetVerify from "pages/email-verify-reset/email-verify-reset"
 import ForgotPassword from "pages/forgot-password/forgot-password"
 import Login from "pages/login/login"
@@ -16,6 +17,7 @@ const UnAuthenticatedApp:FC = function() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/password-recovery" element={<PasswordRecovery />} />
       <Route path="/email-reset-verify" element={<EmailResetVerify />} />
+      <Route path="*" element={<RedirectToMain />} />
     </Routes>
   )
 }

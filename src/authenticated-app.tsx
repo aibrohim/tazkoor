@@ -1,3 +1,4 @@
+import RedirectToMain from "components/redirect-to-main/redirect-to-main";
 import GameResultsProvider from "contexts/result";
 import AddBook from "pages/add-book/add-book";
 import Book from "pages/book/book";
@@ -22,6 +23,7 @@ const AuthenticatedApp:FC = function() {
         <Route path="/game/card/:wordRelation/:id" element={<CardGame />} />
         <Route path="/game/test/:wordRelation/:id" element={<TestGame />} />
         <Route path="/finish" element={<FinishGame />} />
+        <Route path="*" element={<RedirectToMain />} />
       </Routes>
     </GameResultsProvider>
   )

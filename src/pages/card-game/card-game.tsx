@@ -106,3 +106,4 @@ const CardGame = function() {
 };
 
 export default CardGame;
+

@@ -14,14 +14,17 @@ import "./add-word.scss";
 
 interface Props {
   type: WordRelationType;
+  bookId?: number;
   language_native: Language;
   language_translate: Language;
   onWordAdded: Function
 }
 
-const AddWord:FC<Props> = function({type, language_native, language_translate, onWordAdded}) {
+const AddWord:FC<Props> = function({type, language_native, language_translate, onWordAdded, bookId}) {
   const [ isModalOpen, setModalOpen ] = useState<boolean>(false);
 
+  console.log(bookId);
+  
   const { token } = useAuth();
 
   const { id } = useParams();
@@ -38,6 +41,7 @@ const AddWord:FC<Props> = function({type, language_native, language_translate, o
   } = useMutation(() => client(`words`, {
     token,
     data: {
+      book: bookId,
       [type === WordRelationType.Book ? "book" : "theme"]: id,
       title,
       title_translate: titleTranslate,
