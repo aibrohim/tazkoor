@@ -30,7 +30,6 @@ const AddWord:FC<Props> = function({type, language_native, language_translate, o
   const { id } = useParams();
   const [ title, setTitle ] = useState<string>("");
   const [ titleTranslate, setTitleTranslate ] = useState<string>("");
-  const [ partsofspeech, setPartsofspeech ] = useState<string>("1");
 
   const { 
     isLoading,
@@ -45,7 +44,7 @@ const AddWord:FC<Props> = function({type, language_native, language_translate, o
       [type === WordRelationType.Book ? "book" : "theme"]: id,
       title,
       title_translate: titleTranslate,
-      partsofspeech: +partsofspeech
+      partsofspeech: 1
     }
   }));
 
@@ -89,12 +88,6 @@ const AddWord:FC<Props> = function({type, language_native, language_translate, o
             <AuthFields>
               <AuthField value={title} onChange={(e:any) => setTitle(e.target.value)} label={language_native.title} type="text" />
               <AuthField value={titleTranslate} onChange={(e:any) => setTitleTranslate(e.target.value)} label={language_translate.title} type="text" />
-              <AuthField value={partsofspeech} onChange={(e:any) => setPartsofspeech(e.target.value)} label="So'z turkumi" type="select">
-                <option value="1">Other</option>
-                <option value="2">Noun</option>
-                <option value="3">Adjective</option>
-                <option value="4">Verb</option>
-              </AuthField>
             </AuthFields>
 
             <AuthSubmit disabled={isLoading} className="add-word__submit">

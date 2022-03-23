@@ -27,7 +27,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
 
   const [ title, setTitle ] = useState<string>("");
   const [ title_translate, setTitleTranslate ] = useState<string>("");
-  const [ partsofspeech, setPartsofspeech ] = useState<string>("1");
 
   const { mutateAsync, isLoading } = useMutation(() => client(`words`, {
     token,
@@ -36,7 +35,7 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
       id: editingWord?.id,
       title,
       title_translate: title_translate,
-      partsofspeech: +partsofspeech
+      partsofspeech: 1
     }
   }));
 
@@ -53,7 +52,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
     
     setTitle(editingWord ? editingWord.title : "");
     setTitleTranslate(editingWord ? editingWord.title_translate : "");
-    setPartsofspeech(editingWord ? String(editingWord.partsofspeech) : "");
   }, [editingWord]);
 
   const handleModalClose = function() {
@@ -66,7 +64,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
 
   const handleTitleChange = (e : any) => setTitle(e.target.value);
   const handleTranslateChange = (e : any) => setTitleTranslate(e.target.value);
-  const handlePartChange = (e : any) => setPartsofspeech(e.target.value);
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -75,8 +72,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
       (title.trim() && title.trim().toLowerCase() !== editingWord.title.toLowerCase())
       ||
       (title_translate.trim() && title_translate.trim().toLowerCase() !== editingWord.title_translate.toLowerCase())
-      ||
-      +partsofspeech !== editingWord.partsofspeech
     ) {
       mutateAsync().then(() => queryClient.refetchQueries(`${type}_${typeId}_words`).then(() => setEditingWord(null)));
     }
@@ -95,12 +90,6 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
           <AuthFields>
             <AuthField value={title} onChange={handleTitleChange} label="O'zbek" type="text" />
             <AuthField value={title_translate} onChange={handleTranslateChange} label="English" type="text" />
-            <AuthField value={partsofspeech} onChange={handlePartChange} label="So'z turkumi" type="select">
-              <option value="1">Boshqa</option>
-              <option value="2">Ot</option>
-              <option value="3">Sifat</option>
-              <option value="4">Fe'l</option>
-            </AuthField>
           </AuthFields>
 
           <AuthSubmit disabled={isLoading} weight={Weights.semiBold} className="edit-word__submit">
