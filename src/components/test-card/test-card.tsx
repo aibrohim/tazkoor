@@ -18,6 +18,7 @@ const TestCard:FC<Props> = function({word, book, length, index, onAnswered}) {
   const [ answer, setAnswer ] = useState<WordResult | null>();
   const [ secondsRemaining, setSecondsRemaining ] = useState<number>(15);
   const [ answerShown, setAnswerShown ] = useState<boolean>(false);
+  const [ checkedId, setCheckedId ] = useState<number | null>(null);
 
   useEffect(() => {
     if (secondsRemaining >= 1) {
@@ -45,6 +46,7 @@ const TestCard:FC<Props> = function({word, book, length, index, onAnswered}) {
 
     const isCorrect = Boolean(changedItemId === word.id);
 
+    setCheckedId(changedItemId);
     setAnswer({
       id: word.id,
       title: word.title,
@@ -82,7 +84,7 @@ const TestCard:FC<Props> = function({word, book, length, index, onAnswered}) {
                     `test-card__option-label 
                       ${(answerShown && option.id === word.id) ? "test-card__option-label--auto " : ""}
                       ${
-                        answer && answer.id === option.id && !answerShown
+                        answer && checkedId === option.id && !answerShown
                           ? answer.isTrue ? "test-card__option-label--true" : "test-card__option-label--false" 
                           : answer && !answer.isTrue && option.id === word.id && !answerShown ? "test-card__option-label--true" : ""
                       }
