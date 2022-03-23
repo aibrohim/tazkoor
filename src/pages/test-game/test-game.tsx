@@ -1,4 +1,5 @@
 import CardGameHeader from "components/card-game-header/card-game-header";
+import TestSkeleton from "components/loaders/test-skeleton/test-skeleton";
 import TestCard from "components/test-card/test-card";
 import { GameTypes, TestWord, WordResult } from "consts";
 import { useAuth } from "contexts/auth";
@@ -16,6 +17,7 @@ const TestGame:FC = function() {
   const { setResults } = useGameResults();
 
   const { 
+    isLoading,
     data,
   } = useQuery({
     queryFn: () => {
@@ -61,6 +63,7 @@ const TestGame:FC = function() {
   return (
     <>
       <CardGameHeader backUrl={`/${wordRelation}/${id}`} type={GameTypes.Test} />
+      {!activeWord && isLoading && <TestSkeleton />}
       {activeWord && <TestCard key={activeWord.id} onAnswered={handleWordAnswered} book={1} index={index + 1} length={data.data.length} word={activeWord} />}
     </>
   );

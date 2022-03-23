@@ -33,7 +33,7 @@
 }
 
 .test-card {
-  // height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding-bottom: 60px;
@@ -92,21 +92,18 @@
 
 }
 
-.test-card__options {
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
 .test-card__options-set {
   border: none;
   padding: 0;
-  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 30px;
   display: grid;
   gap: 11px;
   grid-template-columns: 1fr 1fr;
 }
 
 .test-card__option-label {
+  min-height: 57px;
   padding: 18px;
   text-align: center;
   border: 1px solid #DADADA;  
@@ -129,6 +126,7 @@
 }
 
 .test-card__next-btn {
+  min-height: 53px;
   border-radius: 14px;
 }
 
