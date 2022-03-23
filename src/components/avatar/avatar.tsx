@@ -11,7 +11,7 @@ interface Props {
 
 const Avatar:FC<Props> = function({color, chars, isPro, className = ""}) {
   return (
-    <div className={"avatar " + (isPro && " avatar--pro") + className} style={{background: color}}>
+    <div className={"avatar " + (isPro ? " avatar--pro " : "") + className} style={{background: color}}>
       {chars}
     </div>
   );

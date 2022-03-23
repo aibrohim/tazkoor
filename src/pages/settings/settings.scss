@@ -1,0 +1,66 @@
+.settings {
+  padding: 24px;
+}
+
+.settings__avatar {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  color: #fff;
+
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+}
+
+.settings__name {
+  margin: 16px;
+  margin-bottom: 51px;
+
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.settings__menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings__menu-link {
+  border-radius: 14px;
+  padding: 17px 24px;
+  
+  color: #000;
+  background: #F4F4F4;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.settings__menu-icon {
+  margin-right: 8px;
+}
+
+.settings__menu-chevron {
+  margin-left: auto;
+  transform: rotate(180deg);
+}
