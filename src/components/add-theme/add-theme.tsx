@@ -17,7 +17,7 @@ interface Props {
 }
 
 const AddTheme:FC<Props> = function({onThemeAdded}) {
-  const { token } = useAuth();
+  const { user } = useAuth();
   const [ isAddOpen, setAddOpen ] = useState<boolean>(false);
 
   const { id } = useParams();
@@ -30,7 +30,7 @@ const AddTheme:FC<Props> = function({onThemeAdded}) {
     isSuccess,
     data
   } = useMutation(() => client(`themes`, {
-    token,
+    token: user?.token,
     data: {
       book_id: id,
       title

@@ -16,7 +16,7 @@ import { client } from "utils/client";
 const Theme:FC = function() {
   const { id } = useParams();
 
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const [ isEditOpen, setEditOpen ] = useState<boolean>(false);
 
@@ -30,7 +30,7 @@ const Theme:FC = function() {
     queryFn: () => {
       return client("games/theme", {
         method: "GET",
-        token,
+        token: user?.token,
         headers: {
           theme: id
         }

@@ -1,24 +1,25 @@
-import { getToken, logout } from "auth-provider";
-import { FC } from "react";
+import { getUser, logout } from "auth-provider";
+import { UserData } from "consts";
+import { Dispatch, FC } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface AppContextInterface {
-  token: string | null;
-  setToken: React.Dispatch<React.SetStateAction<string | null>>;
+  user: UserData | null;
+  setUser: Dispatch<React.SetStateAction<UserData | null>>
 }
 
 const AuthContext = createContext<AppContextInterface | null>(null);
 
 const AuthProvider:FC = function(params: any) {
-  const [ token, setToken ] = useState<string | null>(getToken());
+  const [ user, setUser ] = useState<UserData | null>(getUser());
   
   useEffect(() => {
-    if (!token) {
+    if (!user) {
       logout();
     }
-  }, [token]);
+  }, [user]);
 
-  return <AuthContext.Provider value={{token, setToken}} {...params} />;
+  return <AuthContext.Provider value={{ user, setUser}} {...params} />;
 }
 
 export const useAuth = () => {

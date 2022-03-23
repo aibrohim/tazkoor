@@ -27,12 +27,12 @@ const BookeHeader:FC<Props> = function(props) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const [ isDeleteModalOpen, setDeleteModalOpen ] = useState<boolean>(false);
 
   const { mutateAsync } = useMutation(() => client(`books`, {
-    token,
+    token: user?.token,
     method: "DELETE",
     data: {
       book_id: id,

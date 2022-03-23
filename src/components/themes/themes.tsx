@@ -12,7 +12,7 @@ import { client } from "utils/client";
 import "./themes.scss";
 
 const Themes:FC = function() {
-  const { token } = useAuth();
+  const { user } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Themes:FC = function() {
     queryFn: () => {
       return client("themes", {
         method: "GET",
-        token,
+        token: user?.token,
         headers: {
           "book": id
         }

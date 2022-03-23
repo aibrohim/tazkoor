@@ -4,12 +4,12 @@ import { FC } from "react";
 import UnAuthenticatedApp from "unauthenticated-app";
 
 const App:FC = function () {
-  const { token } = useAuth();
+  const { user } = useAuth();
   
   return (
     <>
       {
-        token ? <AuthenticatedApp /> : <UnAuthenticatedApp />
+        user ? <AuthenticatedApp /> : <UnAuthenticatedApp />
       }
     </>
   );

@@ -6,6 +6,7 @@ import Books from "pages/books/books";
 import CardGame from "pages/card-game/card-game";
 import FinishGame from "pages/finish-game/finish-gmae";
 import Home from "pages/home/home";
+import Settings from "pages/settings/settings";
 import TestGame from "pages/test-game/test-game";
 import Theme from "pages/theme/theme";
 import { FC } from "react";
@@ -23,6 +24,7 @@ const AuthenticatedApp:FC = function() {
         <Route path="/game/card/:wordRelation/:id" element={<CardGame />} />
         <Route path="/game/test/:wordRelation/:id" element={<TestGame />} />
         <Route path="/finish" element={<FinishGame />} />
+        <Route path="/settings/*" element={<Settings />} />
         <Route path="*" element={<RedirectToMain />} />
       </Routes>
     </GameResultsProvider>

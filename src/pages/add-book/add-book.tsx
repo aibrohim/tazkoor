@@ -25,7 +25,7 @@ interface MutationProps {
 const AddBook:FC = function() {
   const wrapperRef = useRef<any>();
 
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const AddBook:FC = function() {
         language_native,
         language_translate
       },
-      token: token
+      token: user?.token
     });
   });
 
@@ -48,7 +48,7 @@ const AddBook:FC = function() {
     queryFn: () => {
       return client("langs", {
         method: "GET",
-        token,
+        token: user?.token,
       })
     },
     enabled: true,

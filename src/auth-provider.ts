@@ -1,24 +1,35 @@
 // pretend this is firebase, netlify, or auth0's code.
 // you shouldn't have to implement something like this in your own app
 
+import { UserData, UserPlans } from "consts";
+
 const localStorageKey = '__auth_provider_token__';
 
-const getToken = function() {
-  // if we were a real auth provider, this is where we would make a request
-  // to retrieve the user's token. (It's a bit more complicated than that...
-  // but you're probably not an auth provider so you don't need to worry about it).
-  return window.localStorage.getItem(localStorageKey);
-}
-
-interface Data {
-  token: string;
-  user: {
-    [x:string]: any
+const getUser = function(): UserData | null {
+  try {
+    return JSON.parse(window.localStorage.getItem(localStorageKey) || "");
+  } catch {
+    return null;
   }
 }
 
+interface Data {
+  user: {
+    avatar: string;
+    email: string;
+    id: number;
+    is_verified: boolean;
+    name: string;
+    plan: UserPlans;
+  }
+  token: string;
+}
+
 function handleUserResponse(data: Data) {
-  window.localStorage.setItem(localStorageKey, data.token);
+  window.localStorage.setItem(localStorageKey, JSON.stringify({
+    ...data.user,
+    token: data.token
+  }));
   return data;
 }
 
@@ -42,6 +53,7 @@ function register({name, email, password}: Register) {
 }
 
 async function logout() {
+  window.localStorage.removeItem(localStorageKey);
   window.localStorage.removeItem(localStorageKey);
 }
 
@@ -70,4 +82,4 @@ async function client(endpoint: string, data: DataType) {
   });
 }
 
-export {getToken, login, register, logout, localStorageKey};
+export { getUser, login, register, logout, localStorageKey};

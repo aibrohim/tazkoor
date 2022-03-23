@@ -84,3 +84,18 @@ export interface TestWord {
   title_translate: string;
   options: TestOption[]
 }
+
+export enum UserPlans {
+  basic = "basic",
+  pro = "pro"
+}
+
+export interface UserData {
+  avatar: string;
+  email: string;
+  id: number;
+  is_verified: boolean;
+  name: string;
+  plan: UserPlans;
+  token: string;
+}

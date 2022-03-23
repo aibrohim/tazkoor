@@ -25,7 +25,7 @@ const AddWord:FC<Props> = function({type, language_native, language_translate, o
 
   console.log(bookId);
   
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const { id } = useParams();
   const [ title, setTitle ] = useState<string>("");
@@ -38,7 +38,7 @@ const AddWord:FC<Props> = function({type, language_native, language_translate, o
     reset,
     data
   } = useMutation(() => client(`words`, {
-    token,
+    token: user?.token,
     data: {
       book: bookId,
       [type === WordRelationType.Book ? "book" : "theme"]: id,

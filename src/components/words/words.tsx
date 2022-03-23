@@ -24,7 +24,7 @@ interface Props {
 const Words:FC<Props> = function({ type, languages, bookId }) {
   const { id } = useParams();
 
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const { 
     isLoading,
@@ -34,7 +34,7 @@ const Words:FC<Props> = function({ type, languages, bookId }) {
     queryFn: () => {
       return client("words", {
         method: "GET",
-        token,
+        token: user?.token,
         headers: {
           [type === WordRelationType.Book ? "book" : "theme"]: id,
         }

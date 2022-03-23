@@ -30,14 +30,17 @@ const Login:FC = function() {
   const [ password, setPassword ] = useState<string>("");
 
   const navigate = useNavigate();
-  const { setToken } = useAuth();
+  const { setUser } = useAuth();
 
   useEffect(():void => {
     if (data) {
-      setToken(data ? data.token : null);
+      setUser(data ? {
+        ...data.user,
+        token: data.token
+      } : null);
       navigate("/");
     }
-  }, [navigate, setToken, data]);
+  }, [navigate, setUser, data]);
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>):void => {
     evt.preventDefault();

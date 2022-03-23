@@ -23,13 +23,13 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
   const queryClient = useQueryClient();
 
   const { id: typeId } = useParams();
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const [ title, setTitle ] = useState<string>("");
   const [ title_translate, setTitleTranslate ] = useState<string>("");
 
   const { mutateAsync, isLoading } = useMutation(() => client(`words`, {
-    token,
+    token: user?.token,
     method: "PUT",
     data: {
       id: editingWord?.id,
@@ -40,7 +40,7 @@ const EditWord:FC<Props> = function({editingWord, setEditingWord, type}) {
   }));
 
   const { mutateAsync : deleteAsync, isLoading : isDeleting } = useMutation(() => client(`words`, {
-    token,
+    token: user?.token,
     method: "DELETE",
     data: {
       id: editingWord?.id,

@@ -26,7 +26,7 @@ enum BookPages {
 const Book:FC = function() {
   const { id } = useParams();
 
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const { 
     isLoading,
@@ -36,7 +36,7 @@ const Book:FC = function() {
     queryFn: () => {
       return client("books", {
         method: "GET",
-        token,
+        token: user?.token,
       })
     },
     enabled: true,

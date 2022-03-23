@@ -13,6 +13,7 @@ interface Props {
 }
 
 const Nav:FC<Props> = function() {
+  const isSettings = window.location.pathname.toLowerCase().startsWith("/settings");
   return (
     <nav className="nav">
       <ul className="nav__list">
@@ -35,7 +36,7 @@ const Nav:FC<Props> = function() {
           </Link>
         </li>
         <li className="nav__item">
-          <Link to="/settings" className="nav__link">
+          <Link to="/settings" className={`nav__link ${isSettings ? "active" : ""}`}>
             <Settings />
             Settings
           </Link>

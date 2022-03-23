@@ -23,12 +23,12 @@ const UpdateBook:FC<Props> = function({title: defaultTitle, isOpened, setOpen, l
   const queryClient = useQueryClient();
 
   const { id } = useParams();
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const [ title, setTitle ] = useState<string>(defaultTitle);
 
   const { mutateAsync, isLoading } = useMutation(() => client(`books`, {
-    token,
+    token: user?.token,
     method: "PUT",
     data: {
       book_id: id,

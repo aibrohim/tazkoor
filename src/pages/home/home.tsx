@@ -12,7 +12,7 @@ import { useQuery } from "react-query";
 import { client } from "utils/client";
 
 const Home:FC = function() {
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const {
     data,
@@ -22,7 +22,7 @@ const Home:FC = function() {
     queryFn: () => {
       return client("books", {
         method: "GET",
-        token,
+        token: user?.token,
       })
     },
     enabled: true,

@@ -20,7 +20,7 @@ function shuffleWords(array: Word[]) {
 }
 
 const CardGame = function() {
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const { wordRelation, id } = useParams();
 
@@ -34,7 +34,7 @@ const CardGame = function() {
     queryFn: () => {
       return client("words", {
         method: "GET",
-        token,
+        token: user?.token,
         headers: {
           [`${wordRelation}`]: id
         }

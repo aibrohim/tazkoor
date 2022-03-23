@@ -20,7 +20,7 @@ interface Props {
 const EditTheme:FC<Props> = function({title: defaultTitle, isOpen, setOpen}) {
   const queryClient = useQueryClient();
 
-  const { token } = useAuth();
+  const { user } = useAuth();
   const [ isEditOpen, setEditOpen ] = useState<boolean>(isOpen);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const EditTheme:FC<Props> = function({title: defaultTitle, isOpen, setOpen}) {
     isLoading,
     mutateAsync,
   } = useMutation(() => client(`themes`, {
-    token,
+    token: user?.token,
     method: "PUT",
     data: {
       id,

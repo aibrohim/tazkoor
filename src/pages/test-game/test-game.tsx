@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { client } from "utils/client";
 
 const TestGame:FC = function() {
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const { wordRelation, id } = useParams();
 
@@ -21,7 +21,7 @@ const TestGame:FC = function() {
     queryFn: () => {
       return client("games/test", {
         method: "GET",
-        token,
+        token: user?.token,
         headers: {
           [`${wordRelation}`]: id
         }

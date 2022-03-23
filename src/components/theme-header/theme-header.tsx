@@ -23,10 +23,10 @@ const ThemeHeader:FC<Props> = function({bookId, onEditClick}) {
   const [ isDeleteModalOpen, setDeleteModalOpen ] = useState<boolean>(false);
   const [ isPopupOpen, setPopupOpen ] = useState<boolean>(false);
 
-  const { token } = useAuth();
+  const { user } = useAuth();
 
   const { mutateAsync } = useMutation(() => client(`themes`, {
-    token,
+    token: user?.token,
     method: "DELETE",
     data: {
       id: id,
