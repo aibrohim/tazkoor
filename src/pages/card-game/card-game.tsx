@@ -1,6 +1,7 @@
 import BigSpinner from "components/big-spinner/big-spinner";
 import CardBody from "components/card-body/card-body";
 import CardGameHeader from "components/card-game-header/card-game-header";
+import CardSkeleton from "components/loaders/card-skeleton/card-skeleton";
 import { GameTypes, Word, WordResult } from "consts";
 import { useAuth } from "contexts/auth";
 import { useGameResults } from "contexts/result";
@@ -30,7 +31,6 @@ const CardGame = function() {
     isLoading,
     data,
   } = useQuery({
-    queryKey: `${wordRelation}_${id}_words`,
     queryFn: () => {
       return client("words", {
         method: "GET",
@@ -41,6 +41,8 @@ const CardGame = function() {
       })
     },
     enabled: true,
+    keepPreviousData: false,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
     retry: 3
   });
@@ -98,7 +100,7 @@ const CardGame = function() {
       <CardGameHeader backUrl={`/${wordRelation}/${id}`} type={GameTypes.Card} />
 
       <main>
-        {isLoading && <BigSpinner />}
+        {isLoading && !data && <CardSkeleton />}
         {data && <CardBody key={currentCard?.id} onAnswerCheck={handleAnswerCheck} order={currentCardIndex + 1} length={data.words.length} wordData={activeWord} />}
       </main>
     </>
