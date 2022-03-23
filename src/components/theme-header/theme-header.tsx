@@ -65,7 +65,17 @@ const ThemeHeader:FC<Props> = function({bookId, onEditClick}) {
           />
         </div>
       </Container>
-      {isDeleteModalOpen && <ConfirmModal onCancelClick={handleCancelClick} onShadowClick={handleCancelClick} onAcceptClick={handleAcceptClick} title="Do you really want to delete this theme?" />}
+      {
+        isDeleteModalOpen
+        && 
+        <ConfirmModal
+          onCancelClick={handleCancelClick}
+          onShadowClick={handleCancelClick}
+          onAcceptClick={handleAcceptClick}
+          title="Do you really want to delete this theme?" 
+          confirmText="Delete"
+        />
+      }
     </header>
   );
 }

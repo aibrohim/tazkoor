@@ -11,11 +11,13 @@ interface Props {
   onCancelClick?: Function;
   onAcceptClick?: (arg0: (() => Promise<void>) | undefined) => any;
   onShadowClick?: Function;
+  confirmText?: string;
 }
 
 const ConfirmModal:FC<Props> = function({
   title, 
   description,
+  confirmText,
   onCancelClick,
   onAcceptClick,
   onShadowClick
@@ -45,7 +47,7 @@ const ConfirmModal:FC<Props> = function({
 
       <div className="confirm-modal__actions">
         <Button onClick={handleCancelClick} className="confirm-modal__action" weight={Weights.semiBold} color={Colors.muted}>Cancel</Button>
-        <Button onClick={handleAcceptClick} className="confirm-modal__action" weight={Weights.semiBold} color={Colors.red}>Leave</Button>
+        <Button onClick={handleAcceptClick} className="confirm-modal__action" weight={Weights.semiBold} color={Colors.red}>{confirmText || "Leave"}</Button>
       </div>
     </Modal>
   );

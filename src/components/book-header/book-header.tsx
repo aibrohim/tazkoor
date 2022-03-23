@@ -74,7 +74,17 @@ const BookeHeader:FC<Props> = function(props) {
         </div>
       </Container>
 
-      {isDeleteModalOpen && <ConfirmModal onCancelClick={handleCancelClick} onShadowClick={handleCancelClick} onAcceptClick={handleAcceptClick} title="Do you really want to delete this book?" />}
+      {
+        isDeleteModalOpen 
+        && 
+        <ConfirmModal
+          onCancelClick={handleCancelClick}
+          onShadowClick={handleCancelClick}
+          onAcceptClick={handleAcceptClick}
+          title="Do you really want to delete this book?" 
+          confirmText="Delete" 
+        />
+      }
     </header>
   );
 }
