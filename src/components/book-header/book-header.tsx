@@ -50,6 +50,7 @@ const BookeHeader:FC<Props> = function(props) {
   };
 
   const handleAcceptClick = () => mutateAsync().then(() => navigate("/"));
+  const handleCancelClick = () => setDeleteModalOpen(false);
 
   return (
     <header className="book-header">
@@ -73,7 +74,7 @@ const BookeHeader:FC<Props> = function(props) {
         </div>
       </Container>
 
-      {isDeleteModalOpen && <ConfirmModal onAcceptClick={handleAcceptClick} title="Do you really want to delete this book?" />}
+      {isDeleteModalOpen && <ConfirmModal onCancelClick={handleCancelClick} onShadowClick={handleCancelClick} onAcceptClick={handleAcceptClick} title="Do you really want to delete this book?" />}
     </header>
   );
 }

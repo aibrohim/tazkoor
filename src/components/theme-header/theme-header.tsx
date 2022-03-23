@@ -42,6 +42,7 @@ const ThemeHeader:FC<Props> = function({bookId, onEditClick}) {
   };
 
   const handleAcceptClick = () => mutateAsync().then(() => navigate(`/book/${bookId}`));
+  const handleCancelClick = () => setDeleteModalOpen(false);
 
   return (
     <header className="book-header">
@@ -64,7 +65,7 @@ const ThemeHeader:FC<Props> = function({bookId, onEditClick}) {
           />
         </div>
       </Container>
-      {isDeleteModalOpen && <ConfirmModal onAcceptClick={handleAcceptClick} title="Do you really want to delete this theme?" />}
+      {isDeleteModalOpen && <ConfirmModal onCancelClick={handleCancelClick} onShadowClick={handleCancelClick} onAcceptClick={handleAcceptClick} title="Do you really want to delete this theme?" />}
     </header>
   );
 }
