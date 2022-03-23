@@ -42,9 +42,7 @@ const Theme:FC = function() {
   });
   
   const themeInfo = data && data.data;
-  console.log(themeInfo);
   
-
   return (
     <>
       <ThemeHeader bookId={themeInfo ? themeInfo.book_id : null} onEditClick={() => setEditOpen(true)} />

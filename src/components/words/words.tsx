@@ -76,7 +76,7 @@ const Words:FC<Props> = function({ type, languages, bookId }) {
       </div>
 
       <div className="words__list">
-        {(isLoading && !data) && (
+        {(isLoading) && (
           <>
             <WordCardSkeleton />
             <WordCardSkeleton />
@@ -85,9 +85,9 @@ const Words:FC<Props> = function({ type, languages, bookId }) {
           </> 
         )}
 
-        {(data && !words.length) && <p>Ko'rsatish uchun so'zlar yo'q</p>}
+        {(data && !words?.length && !isLoading) && <p>Ko'rsatish uchun so'zlar yo'q</p>}
         
-        {words.map(word => (
+        {words?.map(word => (
           <WordCard
             key={word.id}
             onClick={handleWordClick}

@@ -70,3 +70,17 @@ export enum HeaderPopupTypes {
   Book,
   Theme
 }
+
+export interface TestOption {
+  id: number;
+  title: string;
+  title_translate: string;
+  isTrue: boolean;
+}
+
+export interface TestWord {
+  id: number;
+  title: string;
+  title_translate: string;
+  options: TestOption[]
+}

@@ -1,5 +1,37 @@
 @import "styles/variables.scss";
 
+@keyframes correct-option-animation {
+  0% {
+    transform: scale(1.1);
+  }
+
+  75% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes incorrect-option-animation {
+  0% {
+    transform: translateX(10px);
+  }
+
+  40% {
+    transform: translateX(-10px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .test-card {
   // height: 100%;
   display: flex;
@@ -63,6 +95,12 @@
 .test-card__options {
   margin-top: 10px;
   margin-bottom: 30px;
+}
+
+.test-card__options-set {
+  border: none;
+  padding: 0;
+  margin: 0;
   display: grid;
   gap: 11px;
   grid-template-columns: 1fr 1fr;
@@ -76,11 +114,18 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
+  cursor: pointer;
   /* identical to box height */
 
   text-align: center;
 
   color: #333333;
+
+  transition: 0.08 ease all;
+}
+
+.test-card__options-set:disabled .test-card__option-label {
+  cursor: initial;
 }
 
 .test-card__next-btn {
@@ -88,11 +133,22 @@
 }
 
 .test-card__option-label--false {
+  animation: incorrect-option-animation 0.15s linear;
   background-color: $accent-color;
+  border-color: $accent-color;
   color: #fff;
 }
 
 .test-card__option-label--true {
+  animation: correct-option-animation 0.15s linear;
   background-color: $green;
+  border-color: $green;
   color: #fff;
+}
+
+.test-card__option-label--auto {
+  animation: correct-option-animation 0.15s linear;
+  border-color: $green;
+  border-width: 2px;
+  padding: 17px;
 }

@@ -1,6 +1,6 @@
 import CardGameHeader from "components/card-game-header/card-game-header";
 import TestCard from "components/test-card/test-card";
-import { GameTypes, Word, WordResult } from "consts";
+import { GameTypes, TestWord, WordResult } from "consts";
 import { useAuth } from "contexts/auth";
 import { useGameResults } from "contexts/result";
 import { FC, useEffect, useState } from "react";
@@ -16,10 +16,8 @@ const TestGame:FC = function() {
   const { setResults } = useGameResults();
 
   const { 
-    isLoading,
     data,
   } = useQuery({
-    queryKey: `${wordRelation}_${id}_words`,
     queryFn: () => {
       return client("games/test", {
         method: "GET",
@@ -30,59 +28,42 @@ const TestGame:FC = function() {
       })
     },
     enabled: true,
+    keepPreviousData: false,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
     retry: 3
   });
 
-  const [ activeWord, setActiveWord ] = useState<Word>();
+  const [ activeWord, setActiveWord ] = useState<TestWord | null>(null);
   const [ answers, setAnswers ] = useState<WordResult[]>([]);
-  const [ words, setWords ] = useState<Word[]>([]);
-  console.log(data);
-  
+
 
   useEffect(() => {
-    if (words.length) {
-      setActiveWord(words[0]);
+    if (data) { 
+      setActiveWord(data.data[0]);
     }
-  }, [words]);
+  }, [data]);
 
-  const currentCardIndex = words.findIndex((word: Word) => word.id === activeWord?.id);
-  const currentCard = words.find((word: Word) => word.id === activeWord?.id);
-  
-  const handleAnswerCheck = (isTrue : boolean) => {
-    if (currentCard) {
-      setAnswers([
-        ...answers.slice(0, currentCardIndex),
-        {
-          ...currentCard,
-          isTrue,
-          seconds: 12
-        },
-        ...answers.slice(currentCardIndex + 1)
-      ]);
+  const index = data ? data.data.findIndex((word: TestWord) => word.id === activeWord?.id) : null;
 
-      if (currentCardIndex === words.length - 1) {
-        setResults([
-          ...answers,
-          {
-            ...currentCard,
-            isTrue,
-            seconds: 12
-          },
-        ]);
-      } else {
-        setActiveWord(words[currentCardIndex + 1]);
-      }
-  
+  const handleWordAnswered = (answer: WordResult) => {
+    setAnswers([
+      ...answers,
+      answer
+    ]);
+    setActiveWord(data.data[index + 1]);
+
+    if (index === data.data.length - 1) {
+      setResults([...answers, answer]);
     }
   }
 
   return (
     <>
       <CardGameHeader backUrl={`/${wordRelation}/${id}`} type={GameTypes.Test} />
-      <TestCard />
+      {activeWord && <TestCard key={activeWord.id} onAnswered={handleWordAnswered} book={1} index={index + 1} length={data.data.length} word={activeWord} />}
     </>
   );
-}
+} 
 
 export default TestGame;
