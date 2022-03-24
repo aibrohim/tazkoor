@@ -59,7 +59,7 @@ const ProfileSettings:FC = function() {
     alert("Not working yet");
   }
 
-  const hanldeLogoutClick = () => logout();
+  const hanldeLogoutClick = () => logout().then(() => window.location.assign(window.location.toString()));
   
   return (
     <>

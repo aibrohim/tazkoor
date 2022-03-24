@@ -34,14 +34,14 @@ const LanguageSettings:FC = function() {
                 </span>
               </label>
               <label className="language-form__label">
-                <input defaultChecked className="language-form__radio visually-hidden" type="radio" name="language" />
+                <input className="language-form__radio visually-hidden" type="radio" name="language" />
                 <span className="language-form__language-content">
                   <Russia />
                   Russkiy
                 </span>
               </label>
               <label className="language-form__label">
-                <input defaultChecked className="language-form__radio visually-hidden" type="radio" name="language" />
+                <input className="language-form__radio visually-hidden" type="radio" name="language" />
                 <span className="language-form__language-content">
                   <Uzbekistan />
                   O'zbekcha
