@@ -3,7 +3,8 @@ export enum Colors {
   primary = "primary",
   pink = "pink",
   success = "success",
-  red = "red"
+  red = "red",
+  delete = "delete"
 }
 
 export enum ColorValues {
@@ -98,4 +99,9 @@ export interface UserData {
   name: string;
   plan: UserPlans;
   token: string;
+}
+
+export interface Avatar {
+  id: number;
+  color: string;
 }

@@ -1,0 +1,31 @@
+.settings-header__container {
+  position: relative;
+  padding: 20px;
+}
+
+.settings-header__back {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  
+
+  &:active {
+    background-color: #eee;
+  }
+}
+
+.settings-header__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #333333;
+}

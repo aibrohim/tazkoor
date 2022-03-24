@@ -1,0 +1,76 @@
+.settings-page {
+  padding-top: 40px;
+  padding-bottom: 14px;
+  overflow: auto;
+}
+
+.settings-page__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-page__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+
+  color: #000000;
+}
+
+.settings-page__description {
+  margin: 8px 0 60px;
+  width: 260px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: #333333;
+}
+
+.settings-page__form {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-page__fields {
+  margin-bottom: 21px;
+}
+
+.settings-page__field {
+  margin-bottom: 21px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.settings-page__label {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+
+  color: #000000;
+}
+
+.settings-page__submit {
+  margin-top: auto;
+}
+
+.settings-page__btn {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 14px;
+}
+
+.settings-page__delete {
+  margin-top: 12px;
+}

@@ -16,6 +16,9 @@
   vertical-align: middle;
   cursor: pointer;
 
+  -webkit-tap-highlight-color: transparent;
+
+
   &:active {
     opacity: 0.8;
   }
@@ -50,6 +53,11 @@
 .button--red {
   background-color: $red;
   color: #fff;
+}
+
+.button--delete {
+  background-color: #FFDFE3;
+  color: $red;
 }
 
 .button--without-icon {

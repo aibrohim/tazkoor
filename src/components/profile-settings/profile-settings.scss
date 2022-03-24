@@ -1,0 +1,60 @@
+.profile-settings__colors {
+  overflow-x: auto;
+  display: flex;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.profile-settings__color-label {
+  flex-shrink: 0;
+  width: 50px;
+  display: block;
+  margin-right: 14px;
+  position: relative;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.profile-settings__color-radio {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-image: url("/assets/icons/user-select.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 0 0;
+
+  transition: 0.1s ease all;
+
+  &:checked {
+    background-size: 22px 22px;
+  }
+}
+
