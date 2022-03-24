@@ -1,0 +1,44 @@
+@import "styles/variables.scss";
+
+.language-form {
+
+}
+
+.language-form__fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.language-form__label {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.language-form__language-content {
+  display: block;
+  padding: 15px 24px;
+  background-color: #F4F4F4;
+  display: flex;
+  align-items: center;
+  border-radius: 14px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+
+  transition: 0.1s ease all;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.language-form__language-content svg {
+  margin-right: 10px;
+}
+
+.language-form__radio:checked + .language-form__language-content {
+  background-color: $green;
+  color: #fff;
+}

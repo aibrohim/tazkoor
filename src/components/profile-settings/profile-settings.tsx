@@ -75,7 +75,7 @@ const ProfileSettings:FC = function() {
               <Field value={mailValue} onChange={handleMailChange} containerClass="settings-page__field" label="E-mail" type="mail" />
               <label className="settings-page__label">Avatar color:</label>
               <div className="profile-settings__colors">
-                {isLoading && <AvatarsSkeleton />}
+                {isLoading && !avatars && <AvatarsSkeleton />}
                 {avatars && avatars.map((avatar: Avatar) => (
                   <label key={avatar.id} className="profile-settings__color-label">
                     <input

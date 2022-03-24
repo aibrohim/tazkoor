@@ -31,7 +31,7 @@ const Settings:FC = function() {
             Password
             <Chevron className="settings__menu-chevron" />
           </Link>
-          <Link className="settings__menu-link" to="/profile">
+          <Link className="settings__menu-link" to="/settings/language">
             <Globe className="settings__menu-icon" />
             Language
             <Chevron className="settings__menu-chevron" />
