@@ -9,13 +9,13 @@ import SettingsHeader from "components/settings-header/settings-header";
 import { Avatar, Colors } from "consts";
 import { useAuth } from "contexts/auth";
 import { FC, FormEvent, useMemo, useState } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { client } from "utils/client";
 
 import "./profile-settings.scss";
 
 const ProfileSettings:FC = function() {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
 
   const { 
     isLoading,
@@ -33,9 +33,6 @@ const ProfileSettings:FC = function() {
     retry: 3
   });
 
-  const [ nameValue, setNameValue ] = useState<string>(user ? user.name : "");
-  const [ mailValue, setMailValue ] = useState<string>(user ? user.email : "");
-
   const avatars = useMemo(() => {
     if (data && user) {
       const userAvatar = data.avatars.find((avatar: Avatar) => avatar.color === user.avatar);
@@ -50,17 +47,49 @@ const ProfileSettings:FC = function() {
     return null;
   }, [data, user]);
 
+  const [ nameValue, setNameValue ] = useState<string>(user ? user.name : "");
+  const [ mailValue, setMailValue ] = useState<string>(user ? user.email : "");
+  const currentAvatar: Avatar | null = (avatars && user) ? avatars.find((avatar: Avatar) => avatar.color === user.avatar) : null;  
+  const [ avatar, setAvatar ] = useState<number | null>(currentAvatar ? currentAvatar.id : null);
+
+  const { mutateAsync, isLoading: isChanging } = useMutation(() => client(`users`, {
+    token: user?.token,
+    method: "PUT",
+    data: {
+      name: nameValue,
+      email: mailValue,
+      avatar: avatar ? String(avatar) : "1"
+    }
+  }));
+
   const handleNameChange = (evt: any) => setNameValue(evt.target.value);
   const handleMailChange = (evt: any) => setMailValue(evt.target.value);
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    alert("Not working yet");
+    const currentAvatar = avatar;
+
+    mutateAsync().then(() => {
+      if (user && avatars) {
+        setUser({
+          ...user,
+          name: nameValue,
+          email: mailValue,
+          avatar: avatars.find((avatar: Avatar) => avatar.id === currentAvatar).color
+        })
+      }
+    });
   }
 
   const hanldeLogoutClick = () => logout().then(() => window.location.assign(window.location.toString()));
   
+  const handleAvatarsChange = (evt: any) => {
+    if (evt.target.matches("input[type='radio']")) {
+      setAvatar(+evt.target.dataset.id);
+    }
+  }
+
   return (
     <>
       <SettingsHeader title="Profile" />
@@ -74,7 +103,7 @@ const ProfileSettings:FC = function() {
               <Field value={nameValue} onChange={handleNameChange} containerClass="settings-page__field" label="Name" type="text" />
               <Field value={mailValue} onChange={handleMailChange} containerClass="settings-page__field" label="E-mail" type="mail" />
               <label className="settings-page__label">Avatar color:</label>
-              <div className="profile-settings__colors">
+              <div onChange={handleAvatarsChange} className="profile-settings__colors">
                 {isLoading && !avatars && <AvatarsSkeleton />}
                 {avatars && avatars.map((avatar: Avatar) => (
                   <label key={avatar.id} className="profile-settings__color-label">
@@ -84,13 +113,14 @@ const ProfileSettings:FC = function() {
                       className="profile-settings__color-radio"
                       type="radio"
                       name="color"
+                      data-id={avatar.id}
                     />
                   </label>  
                 ))}
               </div>
             </div>
 
-            <Button className="settings-page__btn settings-page__submit" tpye="submit">Save Changes</Button>
+            <Button disabled={isChanging} className="settings-page__btn settings-page__submit" tpye="submit">{isChanging ? "Saving..." : "Save Changes"}</Button>
           </form>
           <Button onClick={hanldeLogoutClick} className="settings-page__btn settings-page__delete" color={Colors.delete} tpye="button">Exit</Button>
         </Container>
