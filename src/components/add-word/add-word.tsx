@@ -22,8 +22,6 @@ interface Props {
 
 const AddWord:FC<Props> = function({type, language_native, language_translate, onWordAdded, bookId}) {
   const [ isModalOpen, setModalOpen ] = useState<boolean>(false);
-
-  console.log(bookId);
   
   const { user } = useAuth();
 

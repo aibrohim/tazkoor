@@ -49,8 +49,6 @@ const EditTheme:FC<Props> = function({title: defaultTitle, isOpen, setOpen}) {
 
   const handleFormSubmit = (evt:FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
-    console.log("theme_" + id);
     
     if (title.trim()) {
       mutateAsync().then(() => queryClient.refetchQueries("theme_" + id).then(() => setEditOpen(false)));

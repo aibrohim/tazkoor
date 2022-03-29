@@ -19,8 +19,6 @@ const Theme:FC = function() {
   const { user } = useAuth();
 
   const [ isEditOpen, setEditOpen ] = useState<boolean>(false);
-
-  console.log("theme_" + id);
   
   const { 
     isLoading,

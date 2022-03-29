@@ -105,3 +105,21 @@ export interface Avatar {
   id: number;
   color: string;
 }
+
+export enum Roles {
+  "Viewer" = "viewer",
+  "Admin" = "admin",
+  "Owner" = "owner"
+}
+
+export interface BookUser {
+  id: number;
+  color: string;
+  name: string;
+  role: Roles
+}
+
+export interface SwitchOption {
+  id: string | number;
+  text: string;
+}

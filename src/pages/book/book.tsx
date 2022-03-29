@@ -1,5 +1,6 @@
 import BookeHeader from "components/book-header/book-header";
 import BookInfo from "components/book-info/book-info";
+import BookUsers from "components/book-users/book-users";
 import Container from "components/container/container";
 import GameBtns from "components/game-btns/game-btns";
 import BookInfoSkeleton from "components/loaders/book-info-skeleton/book-info-skeleton";
@@ -9,7 +10,7 @@ import Switch from "components/switch/switch";
 import Themes from "components/themes/themes";
 import UpdateBook from "components/update-book/update-book";
 import Words from "components/words/words";
-import { Book as BookProps, WordRelationType } from "consts";
+import { Book as BookProps, SwitchOption, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
 import { FC, useState } from "react";
 import { useQuery } from "react-query";
@@ -22,6 +23,17 @@ enum BookPages {
   Themes,
   Words
 }
+
+const tabs: SwitchOption[] = [
+  {
+    id: 0,
+    text: "Themes"
+  },
+  {
+    id: 1,
+    text: "Words"
+  }
+]
 
 const Book:FC = function() {
   const { id } = useParams();
@@ -46,10 +58,13 @@ const Book:FC = function() {
   
 
   const [ activePage, setActivePage ] = useState<BookPages>(BookPages.Themes);
+  
   const [ isShareModalOpen, setShareModalOpen ] = useState<boolean>(false);
   const [ isUpdateModalOpen, setUpdateModalOpen ] = useState<boolean>(false);
 
-  const handleSwitchChange = (changedItem:BookPages) => setActivePage(changedItem);
+  const handleSwitchChange = (changedItem:BookPages) => {
+    setActivePage(+changedItem)
+  };
 
   const handleShareModalClose = () => setShareModalOpen(false);
   const handleShareBtnClick = () => {
@@ -69,12 +84,14 @@ const Book:FC = function() {
           {!data && isLoading && <BookInfoSkeleton />}
           {currentBook && <BookInfo {...currentBook} />}
 
-          <GameBtns
-            isLoading={!data && isLoading}
-            language_native={currentBook?.language_native}
-            language_translate={currentBook?.language_translate}
-            type={WordRelationType.Book} 
-          />
+          {activePage === BookPages.Words && (
+            <GameBtns
+              isLoading={!data && isLoading}
+              language_native={currentBook?.language_native}
+              language_translate={currentBook?.language_translate}
+              type={WordRelationType.Book} 
+            />
+          )}
           
           <div className="book-page__pages">
             {
@@ -89,7 +106,7 @@ const Book:FC = function() {
                   type={WordRelationType.Book}
                 />
             }
-            <Switch className="book-page__switch" onChange={handleSwitchChange} />
+            <Switch options={tabs} className="book-page__switch" onChange={handleSwitchChange} />
           </div>
         </Container>
 
@@ -107,6 +124,8 @@ const Book:FC = function() {
           }
       </main>
       <Nav />
+
+      <BookUsers />
     </>
   );
 }

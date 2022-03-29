@@ -1,3 +1,4 @@
+import JoinedBookCard from "components/joined-book-card/joined-book-card";
 import RedirectToMain from "components/redirect-to-main/redirect-to-main";
 import GameResultsProvider from "contexts/result";
 import AddBook from "pages/add-book/add-book";
@@ -6,6 +7,7 @@ import Books from "pages/books/books";
 import CardGame from "pages/card-game/card-game";
 import FinishGame from "pages/finish-game/finish-gmae";
 import Home from "pages/home/home";
+import JoinedBooks from "pages/joined-books/joined-books";
 import Settings from "pages/settings/settings";
 import TestGame from "pages/test-game/test-game";
 import Theme from "pages/theme/theme";
@@ -19,6 +21,7 @@ const AuthenticatedApp:FC = function() {
         <Route path="/" element={<Home />} />
         <Route path="/add-book" element={<AddBook />} />
         <Route path="/library" element={<Books />} />
+        <Route path="/joined-books" element={<JoinedBooks />} />
         <Route path="/book/:id" element={<Book />} />
         <Route path="/theme/:id" element={<Theme />} />
         <Route path="/game/card/:wordRelation/:id" element={<CardGame />} />

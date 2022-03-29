@@ -1,0 +1,6 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "io.tazkoor.app.twa",
+            "sha256_cert_fingerprints": ["CC:AE:3C:0E:7F:BC:8A:85:67:D0:74:58:6A:01:70:9F:F2:2E:37:B7:82:8E:37:6C:C1:5D:BC:7B:EF:FC:6B:78"] }
+      }
+]

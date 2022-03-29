@@ -1,4 +1,5 @@
-import { FC, FormEvent, useState } from "react";
+import { SwitchOption } from "consts";
+import { FC, FormEvent, useEffect, useRef, useState } from "react";
 
 import "./switch.scss";
 
@@ -12,6 +13,7 @@ interface Props {
   onChange: Function;
   defaultValue?: string | number;
   className?: string;
+  options: SwitchOption[]
 }
 
 interface BarStyles {
@@ -20,13 +22,30 @@ interface BarStyles {
   width: string;
 }
 
-const Switch:FC<Props> = function({labels, className = "", onChange}) {
+const Switch:FC<Props> = function({options, className = "", onChange}) {
   const [ styles, setStyles ] = useState<BarStyles>({left: "4px", width: "72px", height: "33px"});
+
+  const tabsRef = useRef<any>();
+
+  useEffect(() => {
+    const checkedItem = tabsRef.current?.querySelector("input:checked");
+
+    const checkedLabel = checkedItem?.parentElement;
+    const height = checkedLabel?.clientHeight + "px";
+    const left = checkedLabel?.offsetLeft + "px";
+    const width = checkedLabel?.offsetWidth + "px";
+    
+    setStyles({
+      height,
+      left,
+      width
+    })
+  }, []);
 
   const handleFormChange = function(evt:FormEvent<HTMLFormElement>) {
     const checkedItem = evt.currentTarget.querySelector("input:checked");
 
-    onChange(Number(checkedItem?.id));
+    onChange(checkedItem?.id);
 
     const checkedLabel = checkedItem?.parentElement;
     const height = checkedLabel?.clientHeight + "px";
@@ -41,15 +60,15 @@ const Switch:FC<Props> = function({labels, className = "", onChange}) {
   }
 
   return (
-    <form onChange={handleFormChange} className={"switch " + className} action="#">
-      <label className="switch__label">
-        <input className="visually-hidden switch__radio" defaultChecked id="0" name="item" type="radio" />
-        <span className="switch__label-txt">Themes</span>
-      </label>
-      <label className="switch__label">
-        <input className="visually-hidden switch__radio" id="1" name="item" type="radio" />
-        <span className="switch__label-txt">Words</span>
-      </label>
+    <form ref={tabsRef} onChange={handleFormChange} className={"switch " + className} action="#">
+      {
+        options.map((option: SwitchOption, index: number) => (
+          <label key={option.id} className="switch__label">
+            <input className="visually-hidden switch__radio" defaultChecked={index === 0} id={`${option.id}`} name="item" type="radio" />
+            <span className="switch__label-txt">{option.text}</span>
+          </label>
+        ))
+      }
       <span style={styles} className="switch__bar"></span>
     </form>
   );
