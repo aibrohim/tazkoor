@@ -61,24 +61,22 @@ const Book:FC = function() {
   
   const [ isShareModalOpen, setShareModalOpen ] = useState<boolean>(false);
   const [ isUpdateModalOpen, setUpdateModalOpen ] = useState<boolean>(false);
+  const [ isUsersOpen, setUsersOpen ] = useState<boolean>(false);
 
   const handleSwitchChange = (changedItem:BookPages) => {
     setActivePage(+changedItem)
   };
 
   const handleShareModalClose = () => setShareModalOpen(false);
-  const handleShareBtnClick = () => {
-    setShareModalOpen(true);
-  };
-  const handleUpdateBtnClick = () => {
-    setUpdateModalOpen(true);
-  };
+  const handleShareBtnClick = () => setShareModalOpen(true);
+  const handleUpdateBtnClick = () => setUpdateModalOpen(true);
+  const handleUserClick = () => setUsersOpen(true);
 
   const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
   
   return (
     <>
-      <BookeHeader onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} />
+      <BookeHeader onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} onUsersClick={handleUserClick} />
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}
@@ -125,7 +123,7 @@ const Book:FC = function() {
       </main>
       <Nav />
 
-      <BookUsers />
+      {isUsersOpen && <BookUsers setOpen={setUsersOpen} />}
     </>
   );
 }

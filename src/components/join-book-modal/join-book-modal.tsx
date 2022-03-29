@@ -30,7 +30,7 @@ const JoinBookModal:FC<Props> = function({open, setOpen}) {
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    mutateAsync().then(() => queryClient.refetchQueries("joined-books"));
+    mutateAsync().then(() => queryClient.refetchQueries("joined-books").then(() => setOpen(false)));
   }
 
   const handleModalClose = () => setOpen(false);

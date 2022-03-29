@@ -1,6 +1,17 @@
 @import "styles/mixins.scss";
 
+@keyframes open-book-users {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .book-users {
+  animation: open-book-users 0.1s linear;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -14,7 +25,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 20px 0;
+  padding: 26px 0;
 }
 
 .book-users__back {
@@ -24,6 +35,11 @@
   top: 50%;
   left: 20px;
   transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-users__back svg {

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Dispatch, FC } from "react";
 
 import { ReactComponent as Back } from "assets/icons/chevron-left.svg";
 
@@ -31,7 +31,11 @@ const userRolesTab: SwitchOption[] = [
   }
 ]
 
-const BookUsers:FC = function() {
+interface Props {
+  setOpen: Dispatch<React.SetStateAction<boolean>>;
+}
+
+const BookUsers:FC<Props> = function({ setOpen }) {
   const { id } = useParams();
 
   const { user } = useAuth();
@@ -55,14 +59,13 @@ const BookUsers:FC = function() {
   });
   
   const handleRoleTabsChange = () => {};
-
-  return null;
+  const handleBackPress = () => setOpen(false);
 
   return (
     <section className="book-users">
       <header className="book-users__header">
         <Container className="book-users__container">
-          <button className="book-users__back">
+          <button onClick={handleBackPress} className="book-users__back">
             <Back />
           </button>
 

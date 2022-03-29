@@ -32,6 +32,14 @@ const BookThemeHeaderPopup:FC<Props> = ({
   const handlePopupClosed = () => {
     setPopupOpen(false)
   };
+  
+  const handleListPress = (evt: any) => {
+    console.log(evt.target);
+    
+    if (evt.target.matches("button")) {
+      setPopupOpen(false);
+    }
+  }
 
   if (!isPopupOpen) {
     return null;
@@ -39,7 +47,7 @@ const BookThemeHeaderPopup:FC<Props> = ({
 
   return (
     <Popup onPopupClosed={handlePopupClosed} className="book-header__popup">
-      <ul className="book-header__popup-list">
+      <ul onClick={handleListPress} className="book-header__popup-list">
         {
           type === HeaderPopupTypes.Book
           && (

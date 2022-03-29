@@ -39,6 +39,10 @@
   position: relative;
 }
 
+.book-header__popup {
+  z-index: 3;
+}
+
 .book-header__popup-toggler {
   width: 36px;
   height: 36px;
@@ -105,6 +109,7 @@
   display: flex;
   align-items: center;
   padding: 14px 24px;
+  pointer-events: none;
 }
 
 .book-header__popup-btn-txt {
@@ -113,4 +118,5 @@
 
 .book-header__popup-btn-inner svg {
   margin-left: 15px;
+  pointer-events: none;
 }
