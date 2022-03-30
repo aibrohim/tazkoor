@@ -36,8 +36,6 @@ const BookThemeHeaderPopup:FC<Props> = ({
   };
   
   const handleListPress = (evt: any) => {
-    console.log(evt.target);
-    
     if (evt.target.matches("button")) {
       setPopupOpen(false);
     }
@@ -46,8 +44,6 @@ const BookThemeHeaderPopup:FC<Props> = ({
   if (!isPopupOpen) {
     return null;
   }
-  
-  console.log(BookRoles.Viewer);
   
   return (
     <Popup onPopupClosed={handlePopupClosed} className="book-header__popup">

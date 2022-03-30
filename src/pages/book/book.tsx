@@ -79,13 +79,19 @@ const Book:FC = function() {
   const handleShareBtnClick = () => setShareModalOpen(true);
   const handleUpdateBtnClick = () => setUpdateModalOpen(true);
   const handleUserClick = () => navigate("#users");
-  const handleStatsClick = () => setStatsOpen(true);
+  const handleStatsClick = () => navigate("#stats");
 
   useEffect(() => {
     if (location.hash === "#users") {
       setUsersOpen(true)
     } else {
       setUsersOpen(false);
+    }
+
+    if (location.hash === "#stats") {
+      setStatsOpen(true)
+    } else {
+      setStatsOpen(false);
     }
   }, [location]);
 
