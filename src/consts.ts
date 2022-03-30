@@ -123,3 +123,8 @@ export interface SwitchOption {
   id: string | number;
   text: string;
 }
+
+export enum MessageTypes {
+  success,
+  error
+}

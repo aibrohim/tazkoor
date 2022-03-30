@@ -1,7 +1,8 @@
 import Button from "components/button/button";
 import Container from "components/container/container";
 import InfoModal from "components/info-modal/info-modal";
-import { Colors, Weights } from "consts";
+import { Colors, MessageTypes, Weights } from "consts";
+import useStatusMessage from "hooks/useStatusMessage";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,6 +16,17 @@ interface Props {
 const ShareBook:FC<Props> = function({ title, onClose }) {
   const { id } = useParams();
 
+  const { setMessage, setMessageType } = useStatusMessage();
+
+  const handleShareClick = () => {
+    if (setMessage && setMessageType) {
+      navigator.clipboard.writeText(`${id}`).then(() => {
+        setMessage("Copied");
+        setMessageType(MessageTypes.success)
+      })
+    }
+  }
+
   return (
     <InfoModal className="share-book" onClose={onClose}>
       <Container>
@@ -24,7 +36,7 @@ const ShareBook:FC<Props> = function({ title, onClose }) {
           <strong className="share-book__id">{id}</strong>
         </p>
 
-        <Button className="share-book__btn" weight={Weights.semiBold} color={Colors.primary}>Copy ID</Button>
+        <Button onClick={handleShareClick} className="share-book__btn" weight={Weights.semiBold} color={Colors.primary}>Copy ID</Button>
       </Container>
     </InfoModal>
   );

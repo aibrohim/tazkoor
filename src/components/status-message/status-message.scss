@@ -1,3 +1,13 @@
+@keyframes message-open {
+  from {
+    transform: translateX(50%) translateY(0);
+  }
+
+  to {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 .status-message {
   width: 320px;
   min-height: 76px;
@@ -14,6 +24,8 @@
 
   background-color: #EFFFF2;
   border-radius: 10px;
+  
+  animation: 0.15s linear message-open;
 }
 
 .status-message__icon {
@@ -29,4 +41,14 @@
   position: absolute;
   right: 12px;
   top: 12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
 }
