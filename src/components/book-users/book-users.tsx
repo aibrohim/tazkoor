@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import Avatar from "components/avatar/avatar";
 import { BookUser, SwitchOption } from "consts";
 import Switch from "components/switch/switch";
+import BigSpinner from "components/big-spinner/big-spinner";
 
 const userRolesTab: SwitchOption[] = [
   {
@@ -75,6 +76,9 @@ const BookUsers:FC<Props> = function({ setOpen }) {
 
       <div className="book-users__content container">
         <Switch options={userRolesTab} className="book-users__switch" onChange={handleRoleTabsChange} />
+        {
+          isLoading && !data && <BigSpinner />
+        }
         <ul className="book-users__users-list">
           {
             data 
