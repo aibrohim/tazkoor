@@ -35,7 +35,7 @@ const ConfirmModal:FC<Props> = function({
   }
 
   const handleShadowClick = function(evt: any) {
-    if (onShadowClick && evt.target === evt.currentTarget) {
+    if (onShadowClick) {
       onShadowClick();
     }
   }

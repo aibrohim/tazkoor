@@ -9,6 +9,7 @@ import ShareBook from "components/share-book/share-book";
 import Switch from "components/switch/switch";
 import Themes from "components/themes/themes";
 import UpdateBook from "components/update-book/update-book";
+import UsersStats from "components/users-stats/users-stats";
 import Words from "components/words/words";
 import { Book as BookProps, SwitchOption, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
@@ -62,6 +63,7 @@ const Book:FC = function() {
   const [ isShareModalOpen, setShareModalOpen ] = useState<boolean>(false);
   const [ isUpdateModalOpen, setUpdateModalOpen ] = useState<boolean>(false);
   const [ isUsersOpen, setUsersOpen ] = useState<boolean>(false);
+  const [ isStatsOpen, setStatsOpen ] = useState<boolean>(false);
 
   const handleSwitchChange = (changedItem:BookPages) => {
     setActivePage(+changedItem)
@@ -71,12 +73,13 @@ const Book:FC = function() {
   const handleShareBtnClick = () => setShareModalOpen(true);
   const handleUpdateBtnClick = () => setUpdateModalOpen(true);
   const handleUserClick = () => setUsersOpen(true);
+  const handleStatsClick = () => setStatsOpen(true);
 
   const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
   
   return (
     <>
-      <BookeHeader onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} onUsersClick={handleUserClick} />
+      <BookeHeader onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} onUsersClick={handleUserClick} onStatsClick={handleStatsClick} />
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}
@@ -124,6 +127,7 @@ const Book:FC = function() {
       <Nav />
 
       {isUsersOpen && <BookUsers setOpen={setUsersOpen} />}
+      {isStatsOpen && <UsersStats setOpen={setStatsOpen} />}
     </>
   );
 }

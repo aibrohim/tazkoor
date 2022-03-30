@@ -1,0 +1,114 @@
+@import "styles/mixins.scss";
+
+@keyframes open-users-stats {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.users-stats {
+  animation: open-users-stats 0.1s linear;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+}
+
+.users-stats__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 26px 0;
+}
+
+.users-stats__back {
+  @include reset-btn;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.users-stats__back svg {
+  display: block;
+}
+
+.users-stats__title {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+
+  color: #333333;
+}
+
+.users-stats__body {
+  margin-top: 24px;
+}
+
+.users-stats__list {
+  @include reset-list;
+}
+
+.users-stats__user {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 14px;
+  background-color: #f4f4f4;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.users-stats__user-avatar {
+  width: 24px;
+  height: 24px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.users-stats__user-name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #000000;
+
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.users-stats__user-answers {
+  margin: 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.users-stats__corrects {
+  color: #55B963;
+  margin-right: 5px;
+}
+
+.users-stats__incorrects {
+  color: #FB617D;
+}

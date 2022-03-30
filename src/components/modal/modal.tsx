@@ -23,7 +23,7 @@ const Modal = forwardRef<RefMethods, Props>(({children, onShadowClick}, ref) => 
   
   const handleAnimationEnd = (evt: AnimationEvent<HTMLDivElement>) => {
     if (evt.animationName === "modal-content-close" && onShadowClick) {
-      onShadowClick();
+      onShadowClick(evt);
     }
   }
 
