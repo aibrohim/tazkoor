@@ -6,9 +6,10 @@ import { ReactComponent as Stats } from "assets/icons/statistics.svg";
 import { ReactComponent as Users } from "assets/icons/users.svg";
 import { ReactComponent as Pen } from "assets/icons/pen.svg";
 import { ReactComponent as Leave } from "assets/icons/leave.svg";
-import { HeaderPopupTypes } from "consts";
+import { BookRoles, HeaderPopupTypes } from "consts";
 
 interface Props {
+  role?: number;
   isPopupOpen: boolean;
   setPopupOpen: Dispatch<React.SetStateAction<boolean>>;
   type: HeaderPopupTypes;
@@ -27,7 +28,8 @@ const BookThemeHeaderPopup:FC<Props> = ({
   onUsersClick,
   onStatsClick,
   onEditClick,
-  onDeleteClick
+  onDeleteClick,
+  role
 }) => {
   const handlePopupClosed = () => {
     setPopupOpen(false)
@@ -44,7 +46,9 @@ const BookThemeHeaderPopup:FC<Props> = ({
   if (!isPopupOpen) {
     return null;
   }
-
+  
+  console.log(BookRoles.Viewer);
+  
   return (
     <Popup onPopupClosed={handlePopupClosed} className="book-header__popup">
       <ul onClick={handleListPress} className="book-header__popup-list">
@@ -74,6 +78,7 @@ const BookThemeHeaderPopup:FC<Props> = ({
             </li>
           )
         }
+
         <li className="book-header__popup-item">
           <button onClick={onStatsClick ? () => onStatsClick() : undefined} className="book-header__popup-btn">
             <span className="book-header__popup-btn-inner">
@@ -82,22 +87,34 @@ const BookThemeHeaderPopup:FC<Props> = ({
             </span>
           </button>
         </li>
-        <li className="book-header__popup-item">
-          <button onClick={onEditClick ? () => onEditClick() : undefined} className="book-header__popup-btn">
-            <span className="book-header__popup-btn-inner">
-              <span className="book-header__popup-btn-txt">Edit</span>
-              <Pen fill="currentColor" width={18} height={18} />
-            </span>
-          </button>
-        </li>
-        <li className="book-header__popup-item">
-          <button onClick={onDeleteClick ? (evt: MouseEvent<HTMLButtonElement>) => onDeleteClick(evt) : undefined} className="book-header__popup-btn book-header__popup-btn--exit">
-            <span className="book-header__popup-btn-inner">
-              <span className="book-header__popup-btn-txt">Delete</span>
-              <Leave fill="currentColor" width={18} height={18} />
-            </span>
-          </button>
-        </li>
+        {
+          role !== BookRoles.Viewer
+          &&
+          (
+            <li className="book-header__popup-item">
+              <button onClick={onEditClick ? () => onEditClick() : undefined} className="book-header__popup-btn">
+                <span className="book-header__popup-btn-inner">
+                  <span className="book-header__popup-btn-txt">Edit</span>
+                  <Pen fill="currentColor" width={18} height={18} />
+                </span>
+              </button>
+            </li>
+          )
+        }
+        {
+          role !== BookRoles.Viewer
+          &&
+          (
+            <li className="book-header__popup-item">
+              <button onClick={onDeleteClick ? (evt: MouseEvent<HTMLButtonElement>) => onDeleteClick(evt) : undefined} className="book-header__popup-btn book-header__popup-btn--exit">
+                <span className="book-header__popup-btn-inner">
+                  <span className="book-header__popup-btn-txt">Delete</span>
+                  <Leave fill="currentColor" width={18} height={18} />
+                </span>
+              </button>
+            </li>
+          )
+        }
       </ul>
     </Popup>
   );

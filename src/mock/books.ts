@@ -17,7 +17,8 @@ export const books:Book[] = [
       title: "Uzbek"
     },
     themes_count: 10,
-    words_count: 12
+    words_count: 12,
+    role: 3
   },
   {
     id: 2,
@@ -35,7 +36,8 @@ export const books:Book[] = [
       title: "Uzbek"
     },
     themes_count: 10,
-    words_count: 0
+    words_count: 0,
+    role: 3
   },
   {
     id: 3,
@@ -53,7 +55,8 @@ export const books:Book[] = [
       title: "Uzbek"
     },
     themes_count: 0,
-    words_count: 99
+    words_count: 99,
+    role: 3
   },
   {
     id: 4,
@@ -71,6 +74,7 @@ export const books:Book[] = [
       title: "Uzbek"
     },
     themes_count: 10,
-    words_count: 12
+    words_count: 12,
+    role: 3
   }
 ]

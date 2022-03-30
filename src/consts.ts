@@ -35,6 +35,7 @@ export interface Book {
   language_translate: Language;
   themes_count: number | string | null;
   words_count: number | string | null;
+  role: number
 }
 
 export interface Theme {
@@ -127,4 +128,10 @@ export interface SwitchOption {
 export enum MessageTypes {
   success,
   error
+}
+
+export enum BookRoles {
+  Viewer,
+  Admin,
+  Owner
 }

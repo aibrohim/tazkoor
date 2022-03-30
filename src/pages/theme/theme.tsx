@@ -58,6 +58,7 @@ const Theme:FC = function() {
                 themes_count={null}
                 language_native={themeInfo.language_native}
                 language_translate={themeInfo.language_translate}
+                role={3}
               />
             )
           }

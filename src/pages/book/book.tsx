@@ -13,9 +13,10 @@ import UsersStats from "components/users-stats/users-stats";
 import Words from "components/words/words";
 import { Book as BookProps, SwitchOption, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
+import { useEffect } from "react";
 import { FC, useState } from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { client } from "utils/client";
 
 import "./book.scss";
@@ -45,11 +46,14 @@ const Book:FC = function() {
     isLoading,
     data,
   } = useQuery({
-    queryKey: "books",
+    queryKey: "book_" + id,
     queryFn: () => {
-      return client("books", {
+      return client("books/one", {
         method: "GET",
         token: user?.token,
+        headers: {
+          book: id
+        }
       })
     },
     enabled: true,
@@ -57,6 +61,8 @@ const Book:FC = function() {
     retry: 3
   });
   
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [ activePage, setActivePage ] = useState<BookPages>(BookPages.Themes);
   
@@ -72,14 +78,24 @@ const Book:FC = function() {
   const handleShareModalClose = () => setShareModalOpen(false);
   const handleShareBtnClick = () => setShareModalOpen(true);
   const handleUpdateBtnClick = () => setUpdateModalOpen(true);
-  const handleUserClick = () => setUsersOpen(true);
+  const handleUserClick = () => navigate("#users");
   const handleStatsClick = () => setStatsOpen(true);
 
-  const currentBook : BookProps = data && data.books.find((book : BookProps) => book.id === (id ? +id : 0));
+  useEffect(() => {
+    if (location.hash === "#users") {
+      setUsersOpen(true)
+    } else {
+      setUsersOpen(false);
+    }
+  }, [location]);
+
+  const currentBook : BookProps = data && data.book;
+  const bookRole: number | undefined = data && currentBook.role - 1;
+  
   
   return (
     <>
-      <BookeHeader onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} onUsersClick={handleUserClick} onStatsClick={handleStatsClick} />
+      <BookeHeader role={bookRole} onShareClick={handleShareBtnClick} onEditClick={handleUpdateBtnClick} onUsersClick={handleUserClick} onStatsClick={handleStatsClick} />
       <main className="book-page">
         <Container>
           {!data && isLoading && <BookInfoSkeleton />}

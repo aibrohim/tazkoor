@@ -21,6 +21,7 @@ interface Props {
   onStatsClick?: () => void;
   onEditClick?: () => void;
   onDeleteClick?: () => void;
+  role?: number;
 }
 
 const BookeHeader:FC<Props> = function(props) {
