@@ -24,6 +24,10 @@ const ShareBook:FC<Props> = function({ title, onClose }) {
         setMessage("Copied");
         setMessageType(MessageTypes.success)
       })
+      .catch(() => {
+        setMessage("Something went wrong. Please try again");
+        setMessageType(MessageTypes.error)
+      })
     }
   }
 
