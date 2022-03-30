@@ -1,4 +1,3 @@
-import JoinedBookCard from "components/joined-book-card/joined-book-card";
 import RedirectToMain from "components/redirect-to-main/redirect-to-main";
 import GameResultsProvider from "contexts/result";
 import AddBook from "pages/add-book/add-book";
