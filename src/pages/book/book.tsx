@@ -12,7 +12,7 @@ import Themes from "components/themes/themes";
 import UpdateBook from "components/update-book/update-book";
 import UsersStats from "components/users-stats/users-stats";
 import Words from "components/words/words";
-import { Book as BookProps, SwitchOption, BookUser, WordRelationType } from "consts";
+import { Book as BookProps, SwitchOption, BookUser, WordRelationType, BookRoles } from "consts";
 import { useAuth } from "contexts/auth";
 import { useEffect } from "react";
 import { FC, useState } from "react";
@@ -153,7 +153,7 @@ const Book:FC = function() {
 
       {isUsersOpen && <BookUsers setUsers={setUsers} setActiveUser={setActiveUser} />}
       {isStatsOpen && <UsersStats setOpen={setStatsOpen} />}
-      {activeUser && <ChangeUserPermissions user={activeUser} setActiveUser={setActiveUser} />}
+      {activeUser && currentBook.role - 1 === BookRoles.Owner && <ChangeUserPermissions user={activeUser} setActiveUser={setActiveUser} />}
     </>
   );
 }
