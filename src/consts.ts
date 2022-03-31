@@ -117,7 +117,8 @@ export interface BookUser {
   id: number;
   color: string;
   name: string;
-  role: Roles
+  role: BookRoles;
+  created_at: string;
 }
 
 export interface SwitchOption {

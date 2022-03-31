@@ -4,7 +4,7 @@ import { AnimationEvent, FC, MouseEvent, ReactElement, useEffect, useState } fro
 import "./form-modal.scss";
 
 export interface ModalProps {
-  title: string;
+  title?: string;
   description?: string;
   onToggle?: Function;
   onClose?: Function;

@@ -1,0 +1,93 @@
+.change-user-permissions {
+  text-align: center;
+}
+
+.change-user-permissions__avatar {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.change-user-permissions__name {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+
+  color: #000000;
+
+  margin: 12px 0 8px;
+}
+
+.change-user-permissions__id {
+  margin: 0;
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #81755C;
+}
+
+.change-user-permissions__props {
+  border: 1px solid #EEEEEE;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 38px;
+}
+
+.change-user-permissions__row {
+  width: 100%;
+  display: flex;
+
+  &:first-child {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #EEE;
+  }
+
+  &:last-child {
+    padding-top: 16px;
+  }
+}
+
+.change-user-permissions__props p {
+  flex-basis: 50%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.change-user-permissions__prop-name {
+  text-align: left;
+  margin: 0;
+  color: #000000;
+}
+
+.change-user-permissions__prop-value {
+  text-align: right;
+  margin: 0;
+  color: #81755C;
+}
+
+.change-user-permissions__btn {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+}
+
+.change-user-permissions__btn--admin {
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 12px;
+  padding: 15px 24px;
+}
+
+.change-user-permissions__btn--admin span {
+  justify-content: space-between;
+}

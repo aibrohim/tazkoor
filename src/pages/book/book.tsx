@@ -1,7 +1,9 @@
 import BookeHeader from "components/book-header/book-header";
 import BookInfo from "components/book-info/book-info";
 import BookUsers from "components/book-users/book-users";
+import ChangeUserPermissions from "components/change-user-permissions/change-user-permissions";
 import Container from "components/container/container";
+import FormModal from "components/form-modal/form-modal";
 import GameBtns from "components/game-btns/game-btns";
 import BookInfoSkeleton from "components/loaders/book-info-skeleton/book-info-skeleton";
 import Nav from "components/nav/nav";
@@ -11,7 +13,7 @@ import Themes from "components/themes/themes";
 import UpdateBook from "components/update-book/update-book";
 import UsersStats from "components/users-stats/users-stats";
 import Words from "components/words/words";
-import { Book as BookProps, SwitchOption, WordRelationType } from "consts";
+import { Book as BookProps, SwitchOption, BookUser, WordRelationType } from "consts";
 import { useAuth } from "contexts/auth";
 import { useEffect } from "react";
 import { FC, useState } from "react";
@@ -71,6 +73,9 @@ const Book:FC = function() {
   const [ isUsersOpen, setUsersOpen ] = useState<boolean>(false);
   const [ isStatsOpen, setStatsOpen ] = useState<boolean>(false);
 
+  const [ users, setUsers ] = useState<BookUser[]>([]);
+  const [ activeUser, setActiveUser ] = useState<BookUser | null>(null);
+
   const handleSwitchChange = (changedItem:BookPages) => {
     setActivePage(+changedItem)
   };
@@ -97,7 +102,6 @@ const Book:FC = function() {
 
   const currentBook : BookProps = data && data.book;
   const bookRole: number | undefined = data && currentBook.role - 1;
-  
   
   return (
     <>
@@ -148,8 +152,9 @@ const Book:FC = function() {
       </main>
       <Nav />
 
-      {isUsersOpen && <BookUsers setOpen={setUsersOpen} />}
+      {isUsersOpen && <BookUsers setUsers={setUsers} setActiveUser={setActiveUser} />}
       {isStatsOpen && <UsersStats setOpen={setStatsOpen} />}
+      {activeUser && <ChangeUserPermissions user={activeUser} setActiveUser={setActiveUser} />}
     </>
   );
 }

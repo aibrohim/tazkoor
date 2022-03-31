@@ -1,4 +1,4 @@
-import { Dispatch, FC } from "react";
+import { Dispatch, FC, useEffect } from "react";
 
 import { ReactComponent as Back } from "assets/icons/chevron-left.svg";
 
@@ -7,7 +7,7 @@ import Container from "components/container/container";
 import { useQuery } from "react-query";
 import { client } from "utils/client";
 import { useAuth } from "contexts/auth";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Avatar from "components/avatar/avatar";
 import { BookUser, SwitchOption } from "consts";
 import Switch from "components/switch/switch";
@@ -33,11 +33,14 @@ const userRolesTab: SwitchOption[] = [
 ]
 
 interface Props {
-  setOpen: Dispatch<React.SetStateAction<boolean>>;
+  setUsers: Dispatch<React.SetStateAction<BookUser[]>>;
+  setActiveUser: Dispatch<React.SetStateAction<BookUser | null>>
 }
 
-const BookUsers:FC<Props> = function({ setOpen }) {
+const BookUsers:FC<Props> = function({setUsers, setActiveUser}) {
   const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const { user } = useAuth();
 
@@ -58,9 +61,25 @@ const BookUsers:FC<Props> = function({ setOpen }) {
     enabled: true,
     refetchOnWindowFocus: true
   });
+
+  useEffect(() => {
+    if (data) {
+      setUsers(data.users);
+    }
+  }, [data, setUsers]);
   
   const handleRoleTabsChange = () => {};
-  const handleBackPress = () => setOpen(false);
+  const handleBackPress = () => {
+    navigate(location.pathname)
+  };
+
+  const handleListClick = (evt: any) => {
+    if (evt.target.matches("button") && data) {
+      const pressedUser = data.users.find((user: BookUser) => user.id === +evt.target.dataset.id);
+
+      setActiveUser(pressedUser);
+    }
+  }
 
   return (
     <section className="book-users">
@@ -79,7 +98,7 @@ const BookUsers:FC<Props> = function({ setOpen }) {
         {
           isLoading && !data && <BigSpinner />
         }
-        <ul className="book-users__users-list">
+        <ul onClick={handleListClick} className="book-users__users-list">
           {
             data 
             &&
@@ -89,6 +108,7 @@ const BookUsers:FC<Props> = function({ setOpen }) {
                 <span className="book-users__user-name">{user.name}</span>
 
                 <span className="book-users__user-role">{user.role}</span>
+                <button data-id={user.id} className="book-users__user-btn" />
               </li>
             ))
           }

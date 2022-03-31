@@ -71,6 +71,8 @@
 
   margin-bottom: 8px;
 
+  position: relative;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -107,4 +109,14 @@
 .book-users__switch {
   width: fit-content;
   margin: 24px auto 38px;
+}
+
+.book-users__user-btn {
+  @include reset-btn;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
 }
