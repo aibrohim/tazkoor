@@ -3,7 +3,6 @@ import BookInfo from "components/book-info/book-info";
 import BookUsers from "components/book-users/book-users";
 import ChangeUserPermissions from "components/change-user-permissions/change-user-permissions";
 import Container from "components/container/container";
-import FormModal from "components/form-modal/form-modal";
 import GameBtns from "components/game-btns/game-btns";
 import BookInfoSkeleton from "components/loaders/book-info-skeleton/book-info-skeleton";
 import Nav from "components/nav/nav";
@@ -73,7 +72,7 @@ const Book:FC = function() {
   const [ isUsersOpen, setUsersOpen ] = useState<boolean>(false);
   const [ isStatsOpen, setStatsOpen ] = useState<boolean>(false);
 
-  const [ users, setUsers ] = useState<BookUser[]>([]);
+  const [ , setUsers ] = useState<BookUser[]>([]);
   const [ activeUser, setActiveUser ] = useState<BookUser | null>(null);
 
   const handleSwitchChange = (changedItem:BookPages) => {
