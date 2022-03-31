@@ -9,7 +9,7 @@ import { client } from "utils/client";
 import { useAuth } from "contexts/auth";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Avatar from "components/avatar/avatar";
-import { BookUser, SwitchOption } from "consts";
+import { BookRoles, BookUser, SwitchOption } from "consts";
 import Switch from "components/switch/switch";
 import BigSpinner from "components/big-spinner/big-spinner";
 
@@ -107,7 +107,7 @@ const BookUsers:FC<Props> = function({setUsers, setActiveUser}) {
                 <Avatar className="book-users__user-avatar" chars={user.name.slice(0, 1)} color={user.color} />
                 <span className="book-users__user-name">{user.name}</span>
 
-                <span className="book-users__user-role">{user.role}</span>
+                <span className="book-users__user-role">{BookRoles[user.role - 1]}</span>
                 <button data-id={user.id} className="book-users__user-btn" />
               </li>
             ))
