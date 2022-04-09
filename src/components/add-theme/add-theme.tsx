@@ -39,7 +39,9 @@ const AddTheme:FC<Props> = function({onThemeAdded}) {
 
   useEffect(() => {
     if (isSuccess && data && isAddOpen) {
-      onThemeAdded(data[0]);
+      console.log(data);
+      
+      onThemeAdded({...data.data[0], words_count: 0});
 
       setAddOpen(false);
     }

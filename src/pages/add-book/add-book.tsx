@@ -29,7 +29,7 @@ const AddBook:FC = function() {
 
   const navigate = useNavigate();
 
-  const { mutate, isLoading, data: responseData } = useMutation(({title, language_native, language_translate} : MutationProps) => {  
+  const { mutateAsync, isLoading } = useMutation(({title, language_native, language_translate} : MutationProps) => {  
     return client("books", {
       data: {
         title,
@@ -57,12 +57,6 @@ const AddBook:FC = function() {
   });
 
   useEffect(() => {
-    if (responseData?.okay === true) {
-      navigate("/book/" + responseData.book[0].id)
-    }
-  }, [navigate, responseData]);
-
-  useEffect(() => {
     if (data && wrapperRef) {
       wrapperRef.current.querySelector("#nativeLanguage").value = data.data[0].id;
       wrapperRef.current.querySelector("#translateLanguage").value = data.data[1].id;
@@ -77,10 +71,13 @@ const AddBook:FC = function() {
     const translateLang = +wrapperRef?.current.querySelector("#translateLanguage").value;
     
     if (title) {
-      mutate({
+      mutateAsync({
         title: title,
         language_native: nativeLang,
         language_translate: translateLang
+      }).then((data) => {
+        navigate(`/book/${data.book[0].id}`)
+
       });
     }
   };
